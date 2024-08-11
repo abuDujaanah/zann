@@ -9,10 +9,15 @@ $eml = $db->getData("credentials","Email","LoginID",$loginId);
 
 $id = $db->getData("specialist","SpecialistID","Email",$eml);
 
-$it = DB::table('specialist')->where('email', $eml)->get();
+$it = $db->getRows("specialist",  array('where' => array('email' => $eml)));
 
 echo
 $Opp=$db->getRows("opportunity");
+
+echo "<pre>";
+print_r($Opp);
+echo "</pre>";
+
 
 ?>
 <!DOCTYPE html>
@@ -97,8 +102,7 @@ $Opp=$db->getRows("opportunity");
                   
                     
                     <ul>
-
-                        <li>Name: <?=  $it["FullName"]; ?></li>
+                        <li>Name: <?= $it["FullName"]; ?></li>
                         <li>Email: <?= $it["Email"]; ?></li>
                         <li>Phone: <?= $it["phone_Number"]; ?></li>
                     </ul>
