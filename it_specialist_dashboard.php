@@ -3,16 +3,19 @@ session_start();
 include_once 'DB.php';
 $db = new DBhelper();
 
-$loginId = $_SESSION['ActiveUser'];
-$eml = $db->getData("credentials", "Email", "LoginID", $loginId);
-$eml = $eml[0]; // Adjust based on how getData returns the result
 
-$id = $db->getData("specialist", "SpecialistID", "Email", $eml);
-$id = $id[0]; // Adjust based on how getData returns the result
+$loginId=$_SESSION['ActiveUser'];
 
-$it = $db->getRows("specialist",  ['where' => ['email' => $eml]]);
+$eml = $db->getData("credentials","Email","LoginID",$loginId);
 
-$Opp = $db->getRows("opportunity");
+$id = $db->getData("specialist","SpecialistID","Email",$eml);
+
+$it = $db->getRows("specialist",  [ 'where' => ['SpecialistId' => $id ] ]);
+echo "<pre>";
+print_r($it);
+echo "</pre>";
+
+$Opp=$db->getRows("opportunity");
 
 ?>
 <!DOCTYPE html>
@@ -94,14 +97,16 @@ $Opp = $db->getRows("opportunity");
             <div class="profile-content">
                 <div class="personal-details">
                     <h5 class="text-success">Personal Details</h5>
-
-
-                    <ul>
-                        <li>Name: <?= $it[0]["FullName"]; ?></li> <!-- Adjust according to array structure -->
-                        <li>Email: <?= $it[0]["Email"]; ?></li>
-                        <li>Phone: <?= $it[0]["phone_Number"]; ?></li>
-                    </ul>
+                  
                     
+                    <ul>
+
+                        <li>Name: <?=  $it["FullName"]; ?></li>
+                        <li>Email: <?= $it["Email"]; ?></li>
+                        <li>Phone: <?= $it["phone_Number"]; ?></li>
+                    </ul>
+     
+                
                 </div>
                 <!--<div class="education">
                     <h5 class="text-success">Education</h5>
