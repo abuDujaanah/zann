@@ -14,10 +14,6 @@ $it = $db->getRows("specialist",  ['where' => ['email' => $eml]]);
 
 $Opp = $db->getRows("opportunity");
 
-
-echo "<pre>"; print_r($it); echo "</pre>";
-echo "<pre>"; print_r($Opp); echo "</pre>";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
