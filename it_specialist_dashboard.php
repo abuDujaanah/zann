@@ -11,9 +11,6 @@ $eml = $db->getData("credentials","Email","LoginID",$loginId);
 $id = $db->getData("specialist","SpecialistID","Email",$eml);
 
 $it = $db->getRows("specialist",  [ 'where' => ['SpecialistId' => $id ] ]);
-echo "<pre>";
-print_r($it);
-echo "</pre>";
 
 $Opp=$db->getRows("opportunity");
 
