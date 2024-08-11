@@ -98,12 +98,10 @@ $Opp=$db->getRows("opportunity");
                 <div class="personal-details">
                     <h5 class="text-success">Personal Details</h5>
                   
-                    
                     <ul>
-
-                        <li>Name: <?=  $it["FullName"]; ?></li>
-                        <li>Email: <?= $it["Email"]; ?></li>
-                        <li>Phone: <?= $it["phone_Number"]; ?></li>
+                        <li>Name: <?php echo $it[0]['FullName']; ?></li>
+                        <li>Email: <?php echo $it[0]['Email']; ?></li>
+                        <li>Phone: <?php echo $it[0]['phone_Number']; ?></li>
                     </ul>
      
                 
