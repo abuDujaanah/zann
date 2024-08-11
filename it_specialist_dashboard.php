@@ -3,21 +3,20 @@ session_start();
 include_once 'DB.php';
 $db = new DBhelper();
 
+$loginId = $_SESSION['ActiveUser'];
+$eml = $db->getData("credentials", "Email", "LoginID", $loginId);
+$eml = $eml[0]; // Adjust based on how getData returns the result
 
-$loginId=$_SESSION['ActiveUser'];
-$eml = $db->getData("credentials","Email","LoginID",$loginId);
+$id = $db->getData("specialist", "SpecialistID", "Email", $eml);
+$id = $id[0]; // Adjust based on how getData returns the result
 
-$id = $db->getData("specialist","SpecialistID","Email",$eml);
+$it = $db->getRows("specialist",  ['where' => ['email' => $eml]]);
 
-$it = $db->getRows("specialist",  array('where' => array('email' => $eml)));
+$Opp = $db->getRows("opportunity");
 
-echo
-$Opp=$db->getRows("opportunity");
 
-echo "<pre>";
-print_r($Opp);
-echo "</pre>";
-
+echo "<pre>"; print_r($it); echo "</pre>";
+echo "<pre>"; print_r($Opp); echo "</pre>";
 
 ?>
 <!DOCTYPE html>
