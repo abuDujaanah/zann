@@ -9,7 +9,7 @@ $eml = $db->getData("credentials","Email","LoginID",$loginId);
 
 $id = $db->getData("specialist","SpecialistID","Email",$eml);
 
-$it = $db->getRows("specialist",  array('where' => array('email' => $eml)));
+$it = DB::table('specialist')->where('email', $eml)->get();
 
 echo
 $Opp=$db->getRows("opportunity");
