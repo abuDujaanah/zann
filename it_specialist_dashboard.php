@@ -94,15 +94,14 @@ $Opp = $db->getRows("opportunity");
             <div class="profile-content">
                 <div class="personal-details">
                     <h5 class="text-success">Personal Details</h5>
-                  
-                    
+
+
                     <ul>
-                        <li>Name: <?= $it["FullName"]; ?></li>
-                        <li>Email: <?= $it["Email"]; ?></li>
-                        <li>Phone: <?= $it["phone_Number"]; ?></li>
+                        <li>Name: <?= $it[0]["FullName"]; ?></li> <!-- Adjust according to array structure -->
+                        <li>Email: <?= $it[0]["Email"]; ?></li>
+                        <li>Phone: <?= $it[0]["phone_Number"]; ?></li>
                     </ul>
-     
-                
+                    
                 </div>
                 <!--<div class="education">
                     <h5 class="text-success">Education</h5>
