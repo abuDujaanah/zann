@@ -22,24 +22,24 @@ if (isset($_POST['submit'])) {
 
     $insert_datas = $db->insert("opportunity", $datas);
 
-    // if($insert_datas){
+    if($insert_datas){
         
-    //     $login_datas = array(
-    //         'Email' =>  $_POST['email'],
-    //         'Password' => $db->PwdHash('123'),
-    //         'Role'=> 'COMPANY',
-    //     );
-    //     $ild = $db->insert("Credentials", $login_datas);
+        $login_datas = array(
+            'Email' =>  $_POST['email'],
+            'Password' => $db->PwdHash('123'),
+            'Role'=> 'COMPANY',
+        );
+        $ild = $db->insert("Credentials", $login_datas);
 
-    //     if($ild){
-    //         header("location:signin.php?msg=success");
-    //     }else{
-    //         echo "nop";
-    //     }
+        if($ild){
+            header("location:signin.php?msg=success");
+        }else{
+            echo "nop";
+        }
 
-    // }else{
-    //     echo "hazjai gia kwenye company"; 
-    // }
+    }else{
+        echo "hazjai gia kwenye company"; 
+    }
 
 }
 
