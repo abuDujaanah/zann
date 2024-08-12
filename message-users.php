@@ -107,7 +107,7 @@
         <div class="card">
             <h2>Message Users</h2>
             <div>
-                <form action="it_specialist_dashboard.php" method="POST">
+                <form action="message-users.php" method="POST">
                     <label for="message-title">Message Title:</label>
                     <input type="text" id="message-title" name="title" value="Application Results">
 
