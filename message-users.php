@@ -1,11 +1,12 @@
 <?php
 
-
-    // Check if the 'applicant' parameter exists in the URL
     if (isset($_GET['applicant'])) {
-        // Get the value of the 'applicant' parameter
-        $applicantID = $_GET['applicant'];
 
+        $applicantID = $_GET['applicant'];
+        
+        include_once 'DB.php';
+        $db = new DBHelper();
+        
         ?>
             
 <!DOCTYPE html>
@@ -125,7 +126,7 @@
 </html>
 
         <?php
-        
+
     } else {
         // Handle the case where the 'applicant' parameter is not present in the URL
         echo "No applicant ID provided.";
