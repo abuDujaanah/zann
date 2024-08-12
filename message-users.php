@@ -3,7 +3,7 @@
     include_once 'DB.php';
     $db = new DBHelper();
 
-    
+    $App = $db->getRows("specialist");
 ?>
 
 <!DOCTYPE html>

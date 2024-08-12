@@ -229,13 +229,13 @@ $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
             <li class="item" data-id="<?php echo $opp['opportunityID'] ?>">
                 <div class="details">
                     <div>
-                        <div class="title"><?php echo $opp['Tittle'] ?></div>
-                        <div class="company"><?php echo $opp['Type'] ?></div>
-                        <div class="company"><?php echo $opp['Requirements'] ?></div>
-                        <div class="company"><?php echo $opp['StartDate'] ?></div>
-                        <div class="company"><?php echo $opp['EndDate'] ?></div>
-                        <div class="company"><?php echo $opp['Description'] ?></div>
-                        <div class="company"><?php echo $opp['ApplicationDeadline'] ?></div>
+                        <div class="title">Title: <?php echo $opp['Tittle'] ?></div>
+                        <div class="company">Type: <?php echo $opp['Type'] ?></div>
+                        <div class="company">Requirements: <?php echo $opp['Requirements'] ?></div>
+                        <div class="company">Start Date: <?php echo $opp['StartDate'] ?></div>
+                        <div class="company">End Date: <?php echo $opp['EndDate'] ?></div>
+                        <div class="company">Description: <?php echo $opp['Description'] ?></div>
+                        <div class="company">Deadline: <?php echo $opp['ApplicationDeadline'] ?></div>
                     </div>
                 </div>
                 <div class="actions">
