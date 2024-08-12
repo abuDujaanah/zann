@@ -4,11 +4,7 @@ include_once 'DB.php';
 $db = new DBhelper();
 $it = $db->getRows("specialist");
 
-
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
