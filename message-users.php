@@ -6,7 +6,8 @@
         
         include_once 'DB.php';
         $db = new DBHelper();
-        
+
+
         ?>
             
 <!DOCTYPE html>
@@ -105,12 +106,28 @@
     <div class="content">
         <div class="card">
             <h2>Message Users</h2>
-            <div class="form-group">
+            <div>
+                <form action="it_specialist_dashboard.php" method="POST">
+                    <label for="message-title">Message Title:</label>
+                    <input type="text" id="message-title" name="title" value="Application Results">
+
+                    <hr>
+
+                    <label for="message-content">Message:</label>
+                    <br>
+                    <textarea id="message-content" name="message-content" style="height: 100px; width: 800px;"></textarea>
+
+                    <br>
+                    <button type="submit" name="submit">Submit</button>
+                </form>
+            </div>
+
+            <!-- <div class="form-group">
                 <label for="message-user">Select User:</label>
                 <select id="message-user">
                     <option value="">-- Select User --</option>
                     <option value="1">John Doe</option>
-                    <!-- Add more users here as needed -->
+                     
                 </select>
             </div>
             <div class="form-group">
@@ -119,7 +136,7 @@
             </div>
             <div class="form-group">
                 <button type="button">Send Message</button>
-            </div>
+            </div> -->
         </div>
     </div>
 </body>
