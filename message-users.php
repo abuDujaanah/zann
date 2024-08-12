@@ -1,9 +1,26 @@
 <?php
-    session_start();
-    include_once 'DB.php';
-    $db = new DBHelper();
 
-    $App = $db->getRows("specialist");
+
+// Check if the 'applicant' parameter exists in the URL
+if (isset($_GET['applicant'])) {
+    // Get the value of the 'applicant' parameter
+    $applicantID = $_GET['applicant'];
+
+    // Now you can use $applicantID in your code
+    echo "Applicant ID: " . htmlspecialchars($applicantID);
+} else {
+    // Handle the case where the 'applicant' parameter is not present in the URL
+    echo "No applicant ID provided.";
+}
+
+    if (isset($_GET['applicant'])) {
+        session_start();
+        include_once 'DB.php';
+        $db = new DBHelper();
+
+        $applicant = $_GET['applicant'];
+        echo "Applicant ID: " . $applicant;
+
 ?>
 
 <!DOCTYPE html>
@@ -121,3 +138,11 @@
     </div>
 </body>
 </html>
+
+<?php
+
+    } else {
+        echo "No applicant ID provided.";
+    }
+    
+?>
