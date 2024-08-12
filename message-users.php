@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    include_once 'DB.php';
+    $db = new DBHelper();
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
