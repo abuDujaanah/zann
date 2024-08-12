@@ -14,6 +14,17 @@ $it = $db->getRows("specialist",  [ 'where' => ['SpecialistId' => $id ] ]);
 
 $Opp=$db->getRows("opportunity");
 
+// use specialist id to fetch opportunity id
+$OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
+// get the row
+$Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
+
+//debug
+echo "<pre>";
+echo print_r($Opp_2);
+echo "</pre>";
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -217,7 +228,31 @@ $Opp=$db->getRows("opportunity");
         <div class="section">
     <h2>My Applications</h2>
     <ul class="list">
-        <li class="item" data-id="1">
+
+        <?php 
+        foreach( $Opp_2 as $opp ) {
+        ?>
+            <li class="item" data-id="<?php echo $opp['opportunityID'] ?>">
+                <div class="details">
+                    <div>
+                        <div class="title"><?php echo $opp['Tittle'] ?></div>
+                        <div class="company"><?php echo $opp['Type'] ?></div>
+                        <div class="company"><?php echo $opp['Requirements'] ?></div>
+                        <div class="company"><?php echo $opp['StartDate'] ?></div>
+                        <div class="company"><?php echo $opp['EndDate'] ?></div>
+                        <div class="company"><?php echo $opp['Description'] ?></div>
+                        <div class="company"><?php echo $opp['ApplicationDeadline'] ?></div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="btn btn-delete">Delete</button>
+                </div>
+            </li>   
+        <?php
+        }
+        ?>
+
+        <!-- <li class="item" data-id="1">
             <div class="details">
                 <div>
                     <div class="title">Software Engineer</div>
@@ -240,7 +275,8 @@ $Opp=$db->getRows("opportunity");
             <div class="actions">
                 <button class="btn btn-delete">Delete</button>
             </div>
-        </li>
+        </li> -->
+        
     </ul>
 </div>
 

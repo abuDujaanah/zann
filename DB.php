@@ -259,7 +259,7 @@ class DBHelper
 
     public function getData($table, $attrName, $id, $id2)
     {
-        $query = $this->getRows($table, array('where' => array($id => $id2), ' order_by' => ' courseID ASC'));
+        $query = $this->getRows($table, ['where' => [ $id => $id2 ], ' order_by' => ' courseID ASC' ]);
         if (!empty($query)) {
             foreach ($query as  $q) {
                 $attrName = $q[$attrName];
