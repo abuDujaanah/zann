@@ -20,7 +20,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message Users<?php echo $applicantID; ?></title>
+    <title>Message Users</title>
     <style>
         
         body {
