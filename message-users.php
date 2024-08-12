@@ -6,15 +6,8 @@
         // Get the value of the 'applicant' parameter
         $applicantID = $_GET['applicant'];
 
-        // Now you can use $applicantID in your code
-        echo "Applicant ID: " . htmlspecialchars($applicantID);
-    } else {
-        // Handle the case where the 'applicant' parameter is not present in the URL
-        echo "No applicant ID provided.";
-    }
-
-?>
-
+        ?>
+            
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -130,3 +123,12 @@
     </div>
 </body>
 </html>
+
+        <?php
+        
+    } else {
+        // Handle the case where the 'applicant' parameter is not present in the URL
+        echo "No applicant ID provided.";
+    }
+
+?>
