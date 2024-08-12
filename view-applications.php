@@ -115,7 +115,7 @@ $App = $db->getRows("applicants");
 
 
                             <div class="col-6">
-                            <a href="message-users.php?applicant=<?= isset($a['applicantsID']) ? $a['applicantsID'] : ''; ?>" type="button" class="btn btn-danger w-100">accept</a>
+                            <a href="message-users.php?applicant=<?= $a['applicantsID'] ?? ''; ?>" type="button" class="btn btn-danger w-100">accept</a>
 
 
                             </div>
