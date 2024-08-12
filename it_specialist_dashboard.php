@@ -14,15 +14,9 @@ $it = $db->getRows("specialist",  [ 'where' => ['SpecialistId' => $id ] ]);
 
 $Opp=$db->getRows("opportunity");
 
-// use specialist id to fetch opportunity id
 $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
-// get the row
-$Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
 
-//debug
-echo "<pre>";
-echo print_r($Opp_2);
-echo "</pre>";
+$Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
 
 
 ?>
@@ -251,31 +245,6 @@ echo "</pre>";
         <?php
         }
         ?>
-
-        <!-- <li class="item" data-id="1">
-            <div class="details">
-                <div>
-                    <div class="title">Software Engineer</div>
-                    <div class="company">Tech Company Inc.</div>
-                    <p>Status: Applied</p>
-                </div>
-            </div>
-            <div class="actions">
-                <button class="btn btn-delete">Delete</button>
-            </div>
-        </li>
-        <li class="item" data-id="2">
-            <div class="details">
-                <div>
-                    <div class="title">Data Scientist</div>
-                    <div class="company">Data Corp.</div>
-                    <p>Status: Interviewing</p>
-                </div>
-            </div>
-            <div class="actions">
-                <button class="btn btn-delete">Delete</button>
-            </div>
-        </li> -->
         
     </ul>
 </div>
