@@ -1,25 +1,17 @@
 <?php
 
 
-// Check if the 'applicant' parameter exists in the URL
-if (isset($_GET['applicant'])) {
-    // Get the value of the 'applicant' parameter
-    $applicantID = $_GET['applicant'];
-
-    // Now you can use $applicantID in your code
-    echo "Applicant ID: " . htmlspecialchars($applicantID);
-} else {
-    // Handle the case where the 'applicant' parameter is not present in the URL
-    echo "No applicant ID provided.";
-}
-
+    // Check if the 'applicant' parameter exists in the URL
     if (isset($_GET['applicant'])) {
-        session_start();
-        include_once 'DB.php';
-        $db = new DBHelper();
+        // Get the value of the 'applicant' parameter
+        $applicantID = $_GET['applicant'];
 
-        $applicant = $_GET['applicant'];
-        echo "Applicant ID: " . $applicant;
+        // Now you can use $applicantID in your code
+        echo "Applicant ID: " . htmlspecialchars($applicantID);
+    } else {
+        // Handle the case where the 'applicant' parameter is not present in the URL
+        echo "No applicant ID provided.";
+    }
 
 ?>
 
@@ -28,7 +20,7 @@ if (isset($_GET['applicant'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Message Users</title>
+    <title>Message Users<?php echo $applicantID; ?></title>
     <style>
         
         body {
@@ -138,11 +130,3 @@ if (isset($_GET['applicant'])) {
     </div>
 </body>
 </html>
-
-<?php
-
-    } else {
-        echo "No applicant ID provided.";
-    }
-    
-?>
