@@ -94,7 +94,7 @@
     <div class="content">
         <div class="card">
             <h2>Post a New Opportunity</h2>
-            <form method="POST" action="register.php">
+            <form method="POST" action="post-opportunity.php">
                 <div class="form-container" >
                     <h3>Or Add a New Opportunity</h3>
                     <div class="form-group">
