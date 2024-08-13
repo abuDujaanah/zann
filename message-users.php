@@ -120,22 +120,6 @@
                     <button type="submit" name="submit">Submit</button>
                 </form>
             </div>
-
-            <!-- <div class="form-group">
-                <label for="message-user">Select User:</label>
-                <select id="message-user">
-                    <option value="">-- Select User --</option>
-                    <option value="1">John Doe</option>
-                     
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="message-content">Message:</label>
-                <textarea id="message-content"></textarea>
-            </div>
-            <div class="form-group">
-                <button type="button">Send Message</button>
-            </div> -->
         </div>
     </div>
 </body>
