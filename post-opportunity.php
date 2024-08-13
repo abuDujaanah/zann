@@ -95,41 +95,41 @@
         <div class="card">
             <h2>Post a New Opportunity</h2>
             <form method="POST" action="register.php">
-            <div class="form-container" >
-                <h3>Or Add a New Opportunity</h3>
-                <div class="form-group">
-                    <label for="title" >Title:</label>
-                    <input type="text" name="title" id="title">
+                <div class="form-container" >
+                    <h3>Or Add a New Opportunity</h3>
+                    <div class="form-group">
+                        <label for="title" >Title:</label>
+                        <input type="text" name="title" id="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description" >Description:</label>
+                        <input type="text" name="descr" id="description">
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="type" >Type:</label>
+                        <input type="text" name="type" id="type">
+                    </div>
+                    <div class="form-group">
+                        <label for="requirements" >Requirements:</label>
+                        <input type="text" name="requir" id="requirements">
+                    </div>
+                    <div class="form-group">
+                        <label for="start-date" >Start Date:</label>
+                        <input type="date"   name="start_date" id="start-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date" >End Date:</label>
+                        <input type="date"  name="end_date" id="end-date">
+                    </div>
+                    <div class="form-group">
+                        <label for="application-deadline" >Application Deadline:</label>
+                        <input type="date"  name="applica" id="application-deadline">
+                    </div>
+                    <div class="form-group">
+                        <button class="submit">Submit</button>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="description" >Description:</label>
-                    <input type="text" name="descr" id="description">
-                    
-                </div>
-                <div class="form-group">
-                    <label for="type" >Type:</label>
-                    <input type="text" name="type" id="type">
-                </div>
-                <div class="form-group">
-                    <label for="requirements" >Requirements:</label>
-                    <input type="text" name="requir" id="requirements">
-                </div>
-                <div class="form-group">
-                    <label for="start-date" >Start Date:</label>
-                    <input type="date"   name="start_date" id="start-date">
-                </div>
-                <div class="form-group">
-                    <label for="end-date" >End Date:</label>
-                    <input type="date"  name="end_date" id="end-date">
-                </div>
-                <div class="form-group">
-                    <label for="application-deadline" >Application Deadline:</label>
-                    <input type="date"  name="applica" id="application-deadline">
-                </div>
-                <div class="form-group">
-                      <button class="submit">Submit</button>
-                </div>
-            </div>
             </form>
         </div>
     </div>

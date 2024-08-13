@@ -10,7 +10,7 @@ $db = new DBHelper();
 if (isset($_POST['submit'])) {
   
     
-    $datas = array(
+    $datas = [
         'Title' =>  $_POST['title'],
         'Description' =>  $_POST['descr'],
         'Type'=>  $_POST['type'],
@@ -18,17 +18,18 @@ if (isset($_POST['submit'])) {
         'StartDate'=> $_POST['start_date'],
         'EndDate '=> $_POST['end_date'],
         'ApplicationDeadline '=> $_POST['applica'],
-    );
+    ];
 
     $insert_datas = $db->insert("opportunity", $datas);
 
     if($insert_datas){
         
-        $login_datas = array(
+        $login_datas = [
             'Email' =>  $_POST['email'],
             'Password' => $db->PwdHash('123'),
             'Role'=> 'COMPANY',
-        );
+        ];
+        
         $ild = $db->insert("Credentials", $login_datas);
 
         if($ild){
@@ -38,7 +39,7 @@ if (isset($_POST['submit'])) {
         }
 
     }else{
-        echo "hazjai gia kwenye company"; 
+        echo "hazjaigia kwenye company"; 
     }
 
 }
