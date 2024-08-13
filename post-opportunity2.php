@@ -1,50 +1,3 @@
-<?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Database connection
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "zantech";
-
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Collect form data
-    $title = $_POST['title'];
-    $description = $_POST['descr'];
-    $type = $_POST['type'];
-    $requirements = $_POST['requir'];
-    $startDate = $_POST['start_date'];
-    $endDate = $_POST['end_date'];
-    $applicationDeadline = $_POST['applica'];
-
-    $query = "INSERT INTO opportunity (tittle, description, type, requirements, start_date, end_date, application_deadline) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-
-    if ($stmt === false) {
-        die("Failed to prepare statement: " . $conn->error);
-    }
-
-    $stmt->bind_param("sssssss", $title, $description, $type, $requirements, $startDate, $endDate, $applicationDeadline);
-
-
-    // Execute the statement
-    if ($stmt->execute()) {
-        echo "Opportunity posted successfully!";
-    } else {
-        echo "Error: " . $stmt->error;
-    }
-
-    // Close the statement and connection
-    $stmt->close();
-    $conn->close();
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,7 +5,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Opportunity</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
+
+
     .sidebar {
         height: 100%;
         width: 250px;
@@ -114,10 +70,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     .form-group button:hover {
         background-color: #003300;
     }
+
     .form-container {
-        width: 60%;
-        margin: 0 auto;
+        width: 60%; /* Set the width of the form container */
+        margin: 0 auto; /* Center the form container */
     }
+
+
+
+
+
     </style>
 </head>
 <body>
@@ -129,42 +91,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <a href="message-users.php">Message Users</a>
     </div>
 
+    
     <div class="content">
         <div class="card">
             <h2>Post a New Opportunity</h2>
-            <form method="POST" action="">
-                <div class="form-container">
+            <form method="POST" action="post-opportunity.php">
+                <div class="form-container" >
                     <h3>Or Add a New Opportunity</h3>
                     <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" name="title" id="title" required>
+                        <label for="title" >Title:</label>
+                        <input type="text" name="title" id="title">
                     </div>
                     <div class="form-group">
-                        <label for="description">Description:</label>
-                        <input type="text" name="descr" id="description" required>
+                        <label for="description" >Description:</label>
+                        <input type="text" name="descr" id="description">
+                        
                     </div>
                     <div class="form-group">
-                        <label for="type">Type:</label>
-                        <input type="text" name="type" id="type" required>
+                        <label for="type" >Type:</label>
+                        <input type="text" name="type" id="type">
                     </div>
                     <div class="form-group">
-                        <label for="requirements">Requirements:</label>
-                        <input type="text" name="requir" id="requirements" required>
+                        <label for="requirements" >Requirements:</label>
+                        <input type="text" name="requir" id="requirements">
                     </div>
                     <div class="form-group">
-                        <label for="start-date">Start Date:</label>
-                        <input type="date" name="start_date" id="start-date" required>
+                        <label for="start-date" >Start Date:</label>
+                        <input type="date"   name="start_date" id="start-date">
                     </div>
                     <div class="form-group">
-                        <label for="end-date">End Date:</label>
-                        <input type="date" name="end_date" id="end-date" required>
+                        <label for="end-date" >End Date:</label>
+                        <input type="date"  name="end_date" id="end-date">
                     </div>
                     <div class="form-group">
-                        <label for="application-deadline">Application Deadline:</label>
-                        <input type="date" name="applica" id="application-deadline" required>
+                        <label for="application-deadline" >Application Deadline:</label>
+                        <input type="date"  name="applica" id="application-deadline">
                     </div>
                     <div class="form-group">
-                        <button class="submit">Submit</button>
+                        <button type="submit" name="submit" class="submit">Submit</button> 
                     </div>
                 </div>
             </form>
