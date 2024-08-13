@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $endDate = $_POST['end_date'];
     $applicationDeadline = $_POST['applica'];
 
-    $query = "INSERT INTO opportunity (tittle, description, type, requirements, start_date, end_date, application_deadline) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $query = "INSERT INTO opportunity (Tittle, Description, Type, Requirements, StartDate, EndDate, ApplicationDeadline) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
 
     if ($stmt === false) {
