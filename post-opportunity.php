@@ -23,9 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $endDate = $_POST['end_date'];
     $applicationDeadline = $_POST['applica'];
 
-    // Prepare SQL statement
+    // update error handling
     $query = "INSERT INTO opportunity (title, description, type, requirements, start_date, end_date, application_deadline) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($query);
+
+    if ($stmt === false) {
+        die("Failed to prepare statement: " . $conn->error);
+    }
+
     $stmt->bind_param("sssssss", $title, $description, $type, $requirements, $startDate, $endDate, $applicationDeadline);
 
 
