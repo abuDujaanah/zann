@@ -127,7 +127,7 @@
                         <input type="date"  name="applica" id="application-deadline">
                     </div>
                     <div class="form-group">
-                        <button class="submit">Submit</button>
+                        <button type="submit" name="submit" class="submit">Submit</button> 
                     </div>
                 </div>
             </form>
