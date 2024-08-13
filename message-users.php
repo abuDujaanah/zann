@@ -23,9 +23,9 @@
 <?php
 // Database connection details
 $servername = "localhost";
-$username = "user";
-$password = "password";
-$dbname = "database_name";
+$username = "root";
+$password = "";
+$dbname = "zantech";
 
 // Create connection to the database
 $conn = new mysqli($servername, $username, $password, $dbname);
