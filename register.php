@@ -20,6 +20,8 @@ if (isset($_POST['submit'])) {
         'ApplicationDeadline '=> $_POST['applica'],
     ];
 
+    echo '<pre>'; echo print_r($datas); echo '</pre>';
+
     $insert_datas = $db->insert("opportunity", $datas);
 
     if($insert_datas){
