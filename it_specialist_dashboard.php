@@ -144,6 +144,7 @@ $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
 
             <ul class="list">
         
+            <?php if (is_array($Opp)) { ?> 
                 <?php 
                     foreach ($Opp as $ops) {
                         ?>
@@ -188,6 +189,11 @@ $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
 </div>
                     </div>
                 </li>
+
+                <?php } ?>
+                
+                <?php } else { ?>
+                    <p>No datas found.</p>
                 <?php } ?>
 
 
@@ -203,10 +209,11 @@ $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
                     <div class="p-2 mb-2 alert-danger">
                         <h6>Sorry Failed to upload file<span class="fa fa-times-circle float-right ml-4"></span></h6>
                     </div>
+
                     <?php
                     }
-
                     ?>
+
                 </div>
 
 
@@ -217,29 +224,32 @@ $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
     <h2>My Applications</h2>
     <ul class="list">
 
-        <?php 
-        foreach( $Opp_2 as $opp ) {
-        ?>
-            <li class="item" data-id="<?php echo $opp['opportunityID'] ?>">
-                <div class="details">
-                    <div>
-                        <div class="title">Title: <?php echo $opp['Tittle'] ?></div>
-                        <div class="company">Type: <?php echo $opp['Type'] ?></div>
-                        <div class="company">Requirements: <?php echo $opp['Requirements'] ?></div>
-                        <div class="company">Start Date: <?php echo $opp['StartDate'] ?></div>
-                        <div class="company">End Date: <?php echo $opp['EndDate'] ?></div>
-                        <div class="company">Description: <?php echo $opp['Description'] ?></div>
-                        <div class="company">Deadline: <?php echo $opp['ApplicationDeadline'] ?></div>
+        <?php if (is_array($Opp_2)) { ?>            
+            <?php 
+            foreach( $Opp_2 as $opp ) {
+            ?>
+                <li class="item" data-id="<?php echo $opp['opportunityID'] ?>">
+                    <div class="details">
+                        <div>
+                            <div class="title">Title: <?php echo $opp['Tittle'] ?></div>
+                            <div class="company">Type: <?php echo $opp['Type'] ?></div>
+                            <div class="company">Requirements: <?php echo $opp['Requirements'] ?></div>
+                            <div class="company">Start Date: <?php echo $opp['StartDate'] ?></div>
+                            <div class="company">End Date: <?php echo $opp['EndDate'] ?></div>
+                            <div class="company">Description: <?php echo $opp['Description'] ?></div>
+                            <div class="company">Deadline: <?php echo $opp['ApplicationDeadline'] ?></div>
+                        </div>
                     </div>
-                </div>
-                <div class="actions">
-                    <button class="btn btn-delete">Delete</button>
-                </div>
-            </li>   
-        <?php
-        }
-        ?>
-        
+                    <div class="actions">
+                        <button class="btn btn-delete">Delete</button>
+                    </div>
+                </li>   
+            <?php
+            }
+            ?>
+        <?php } else { ?>
+            <p>No datas found.</p>
+        <?php } ?>
     </ul>
 </div>
 
