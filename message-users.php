@@ -66,8 +66,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = $_POST['message'];
 
     // Prepare the SQL query
-    $sql = "INSERT INTO messages (title, applicantId, name, email, message) VALUES ('$title', '$applicant', '$name', '$email', '$message')";
-    $sql = $db->insert()
+    //$sql = "INSERT INTO messages (title, applicantId, name, email, message) VALUES (, '$applicant', '$name', '$email', '$message')";
+    
+    $sql = $db->insert('messages', ['title' => $title, 'applicantId' => $applicant, 'name' => $name, 'email' => $email, 'message' => $message]);
 
     // Insert the data into the database
     if ($conn->query($sql) === TRUE) {
