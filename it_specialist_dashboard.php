@@ -12,7 +12,7 @@ $id = $db->getData("specialist","SpecialistID","Email",$eml);
 
 $it = $db->getRows("specialist",  [ 'where' => ['SpecialistId' => $id ] ]);
 
-$Opp=$db->getRows("opportunity");
+$Opp = $db->getRows("opportunity");
 
 
 $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
@@ -21,6 +21,7 @@ $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
 
 
 $msgs = $db->getRows("messages", ['where' => ['applicantId' => $loginId]]);
+echo "<pre>"; print_r($msgs); echo "</pre>";
 
 ?>
 <!DOCTYPE html>
