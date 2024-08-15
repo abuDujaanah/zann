@@ -44,41 +44,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include_once 'DB.php';
     $db = new DBhelper();
 
-    // Database connection details
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "zantech";
-
-    // Create connection to the database
-    $conn = new mysqli($servername, $username, $password, $dbname);
-
-    // Check the connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    // Receive data from the form
     $applicant = $_POST['applicant'];
     $name = $_POST['company_name'];
     $title = $_POST['title'];
     $email = $_POST['email'];
     $message = $_POST['message'];
 
-    // Prepare the SQL query
-    //$sql = "INSERT INTO messages (title, applicantId, name, email, message) VALUES (, '$applicant', '$name', '$email', '$message')";
-    
     $sql = $db->insert('messages', ['title' => $title, 'applicantId' => $applicant, 'name' => $name, 'email' => $email, 'message' => $message]);
 
-    // Insert the data into the database
-    if ($conn->query($sql) === TRUE) {
-        header("location:company_dashboard.php?msg=success");
-    } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-    }
-
-    // Close the connection
-    $conn->close();
 }
 
 ?>
