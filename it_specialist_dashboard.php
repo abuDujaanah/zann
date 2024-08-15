@@ -21,7 +21,8 @@ $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
 
 
 $msgs = $db->getRows("messages", ['where' => ['applicantId' => $loginId]]);
-echo "<pre>"; print_r($msgs); echo "</pre>";
+
+// echo "<pre>"; print_r($msgs); echo "</pre>";
 
 ?>
 <!DOCTYPE html>
