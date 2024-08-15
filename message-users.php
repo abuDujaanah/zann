@@ -40,6 +40,10 @@ if (isset($_GET['applicant'])) {
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    include_once 'DB.php';
+    $db = new DBhelper();
+
     // Database connection details
     $servername = "localhost";
     $username = "root";
@@ -63,6 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Prepare the SQL query
     $sql = "INSERT INTO messages (title, applicantId, name, email, message) VALUES ('$title', '$applicant', '$name', '$email', '$message')";
+    $sql = $db->insert()
 
     // Insert the data into the database
     if ($conn->query($sql) === TRUE) {
