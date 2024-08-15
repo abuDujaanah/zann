@@ -6,6 +6,7 @@ $db = new DBhelper();
 
 $loginId=$_SESSION['ActiveUser'];
 
+
 $eml = $db->getData("credentials","Email","LoginID",$loginId);
 
 $id = $db->getData("specialist","SpecialistID","Email",$eml);
@@ -20,7 +21,9 @@ $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
 $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
 
 
-$msgs = $db->getRows("messages", ['where' => ['applicantId' => $loginId]]);
+$applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $loginId);
+
+$msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
 
 // echo "<pre>"; print_r($msgs); echo "</pre>";
 
