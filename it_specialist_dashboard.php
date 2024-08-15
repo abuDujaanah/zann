@@ -261,8 +261,8 @@ $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
                     <li class="item">
                         <div class="details">
                             <div>
-                                <div class="title"><?php echo $msg['title'] ?></div>
-                                <div class="company"><?php echo $msg['name'] ?></div>
+                                <div class="title">Title: <?php echo $msg['title'] ?></div>
+                                <div class="company">Company: <?php echo $msg['name'] ?></div>
                             </div>
                             <p><?php echo $msg['message'] ?>.</p>
                         </div>
