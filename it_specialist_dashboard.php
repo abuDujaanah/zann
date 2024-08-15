@@ -27,8 +27,6 @@ $applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specia
 
 $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
 
-echo "<pre>"; print_r($msgs); echo "</pre>";
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
