@@ -1,3 +1,19 @@
+<?php 
+if (isset($_GET['applicant'])) {
+    $applic = $_GET['applicant'];
+
+    session_start();
+    if (isset($_SESSION['company_email'])) {
+        $co_mail = $_SESSION['company_email'];
+
+        include_once 'DB.php';
+        $db = new DBhelper();
+
+        $co_name = $db->getData("company", "Company_Name", "email", $co_mail);
+    }
+ 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +22,13 @@
 </head>
 <body>
     <h1>Send a Message</h1>
-    <form action="send_message.php" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <form action="message-users.php" method="post">
+        <input type="hidden" name="applicant" value="<?php echo $applic ?>">
+        <input type="hidden" name="company_name" value="<?php echo $co_name ?>">
+        <input type="hidden" name="email" value="<?php echo $co_mail ?>">
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required><br><br>
 
         <label for="message">Message:</label><br>
         <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
@@ -21,35 +38,41 @@
 </body>
 </html>
 <?php
-// Database connection details
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "zantech";
 
-// Create connection to the database
-$conn = new mysqli($servername, $username, $password, $dbname);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Database connection details
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "zantech";
 
-// Check the connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    // Create connection to the database
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    // Check the connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Receive data from the form
+    $applicant = $_POST['applicant'];
+    $name = $_POST['company_name'];
+    $title = $_POST['title'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    // Prepare the SQL query
+    $sql = "INSERT INTO messages (title, applicantId, name, email, message) VALUES ('$title', '$applicant', '$name', '$email', '$message')";
+
+    // Insert the data into the database
+    if ($conn->query($sql) === TRUE) {
+        header("location:company_dashboard.php?msg=success");
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    // Close the connection
+    $conn->close();
 }
 
-// Receive data from the form
-$name = $_POST['name'];
-$email = $_POST['email'];
-$message = $_POST['message'];
-
-// Prepare the SQL query
-$sql = "INSERT INTO messages (name, email, message) VALUES ('$name', '$email', '$message')";
-
-// Insert the data into the database
-if ($conn->query($sql) === TRUE) {
-    echo "Message sent successfully!";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-}
-
-// Close the connection
-$conn->close();
 ?>

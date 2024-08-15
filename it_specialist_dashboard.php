@@ -14,10 +14,13 @@ $it = $db->getRows("specialist",  [ 'where' => ['SpecialistId' => $id ] ]);
 
 $Opp=$db->getRows("opportunity");
 
+
 $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
 
 $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
 
+
+$msgs = $db->getRows("messages", ['where' => ['applicantId' => $loginId]]);
 
 ?>
 <!DOCTYPE html>
@@ -108,20 +111,6 @@ $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
      
                 
                 </div>
-                <!--<div class="education">
-                    <h5 class="text-success">Education</h5>
-                    <ul>
-                        <li>Bachelor of Science in Computer Science - SUZA University, 2020</li>
-                        <li>High School Diploma - ABC School, 2024</li>
-                    </ul>
-                </div>
-                <div class="work-experience">
-                    <h5 class="text-success">Work Experience</h5>
-                    <ul>
-                        <li>Software Engineer - Tech Solutions Ltd., 2020-Present</li>
-                        <li>Intern - Innovation Hub, 2019-2020</li>
-                    </ul>
-                </div>-->
                 <div class="github">
                     <h5 class="text-success">GitHub</h5>
                     <ul>
@@ -261,27 +250,19 @@ $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
             <hr>
            
             <ul class="list">
-                <li class="item">
-                    <div class="details">
-                        <div>
-                            <div class="title">Message from Creative Solutions</div>
-                            <div class="company">Creative Solutions</div>
+
+                <?php foreach( $msgs as $msg ) { ?>
+                    <li class="item">
+                        <div class="details">
+                            <div>
+                                <div class="title"><?php echo $msg['title'] ?></div>
+                                <div class="company"><?php echo $msg['name'] ?></div>
+                            </div>
+                            <p><?php echo $msg['message'] ?>.</p>
                         </div>
-                        <p>hapa pataka ujumbe ambao atautuma company.</p>
-                    </div>
-                    
-                </li>
-                <li class="item">
-                    <div class="details">
-                        <div>
-                            <div class="title">Message from Tech Innovators</div>
-                            <div class="company">Tech Innovators</div>
-                        </div>
-                        <p>hapa patkaa ujumbe wa kukaa .</p>
-                    </div>
-                   
-                </li>
-                <!-- Additional message items can be added here -->
+                    </li>
+                <?php } ?>
+                
             </ul>
         </div>
 

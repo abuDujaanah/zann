@@ -18,6 +18,7 @@ if (isset($_POST['signin'])) {
         }
 
         if($role=="COMPANY"){
+            $_SESSION['company_email'] = $email;
             header("location:company_dashboard.php?msg=success");
         }
 
