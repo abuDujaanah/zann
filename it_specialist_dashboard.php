@@ -252,7 +252,8 @@ echo "<pre>"; print_r($msgs); echo "</pre>";
            
             <ul class="list">
 
-                <?php foreach( $msgs as $msg ) { ?>
+            <?php if (is_array($msgs)) { ?>
+                <?php foreach ($msgs as $msg) { ?>
                     <li class="item">
                         <div class="details">
                             <div>
@@ -263,6 +264,10 @@ echo "<pre>"; print_r($msgs); echo "</pre>";
                         </div>
                     </li>
                 <?php } ?>
+            <?php } else { ?>
+                <p>No messages found.</p>
+            <?php } ?>
+
                 
             </ul>
         </div>
