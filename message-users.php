@@ -1,18 +1,20 @@
 <?php 
-if (isset($_GET['applicant'])) {
-    $applic = $_GET['applicant'];
 
-    session_start();
-    if (isset($_SESSION['company_email'])) {
-        $co_mail = $_SESSION['company_email'];
+    if (isset($_GET['applicant'])) {
+        $applic = $_GET['applicant'];
 
-        include_once 'DB.php';
-        $db = new DBhelper();
+        session_start();
+        if (isset($_SESSION['company_email'])) {
+            $co_mail = $_SESSION['company_email'];
 
-        $co_name = $db->getData("company", "Company_Name", "email", $co_mail);
+            include_once 'DB.php';
+            $db = new DBhelper();
+
+            $co_name = $db->getData("company", "Company_Name", "email", $co_mail);
+        }
+    
     }
- 
-}
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,19 +41,19 @@ if (isset($_GET['applicant'])) {
 </html>
 <?php
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    include_once 'DB.php';
-    $db = new DBhelper();
+        include_once 'DB.php';
+        $db = new DBhelper();
 
-    $applicant = $_POST['applicant'];
-    $name = $_POST['company_name'];
-    $title = $_POST['title'];
-    $email = $_POST['email'];
-    $message = $_POST['message'];
+        $applicant = $_POST['applicant'];
+        $name = $_POST['company_name'];
+        $title = $_POST['title'];
+        $email = $_POST['email'];
+        $message = $_POST['message'];
 
-    $sql = $db->insert('messages', ['title' => $title, 'applicantId' => $applicant, 'name' => $name, 'email' => $email, 'message' => $message]);
+        $sql = $db->insert('messages', ['title' => $title, 'applicantId' => $applicant, 'name' => $name, 'email' => $email, 'message' => $message]);
 
-}
+    }
 
 ?>
