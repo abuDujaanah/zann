@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2024 at 04:45 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.10
+-- Generation Time: Aug 15, 2024 at 07:35 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,10 +31,10 @@ CREATE TABLE `applicants` (
   `ApplicantID` int(11) NOT NULL,
   `opportunityID` int(255) NOT NULL,
   `SpecialistID` int(255) NOT NULL,
-  `ApplicationDate` date NOT NULL,
+  `ApplicationDate` date NOT NULL DEFAULT current_timestamp(),
   `LetterPath` varchar(255) NOT NULL,
   `Status` varchar(255) NOT NULL DEFAULT 'Pending'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `applicants`
@@ -54,7 +54,9 @@ INSERT INTO `applicants` (`ApplicantID`, `opportunityID`, `SpecialistID`, `Appli
 (11, 1, 0, '0000-00-00', '388324.pdf', 'Pending'),
 (12, 1, 0, '0000-00-00', '480290.pdf', 'Pending'),
 (13, 1, 0, '0000-00-00', '932623.pdf', 'Pending'),
-(14, 1, 5, '0000-00-00', '887073.pdf', 'Pending');
+(14, 1, 5, '0000-00-00', '887073.pdf', 'Pending'),
+(15, 1, 5, '0000-00-00', '523427.pdf', 'Pending'),
+(16, 1, 24, '0000-00-00', '813292.pdf', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -70,7 +72,7 @@ CREATE TABLE `company` (
   `Comfirm_Password` varchar(244) NOT NULL,
   `Phone` varchar(12) NOT NULL,
   `Address` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `company`
@@ -86,7 +88,8 @@ INSERT INTO `company` (`CompanyID`, `Company_Name`, `email`, `Password`, `Comfir
 (10, 'mama', 'mama@gmail.com', '123', '', '0777720436', 'VUGA'),
 (11, 'mama', 'mama@gmail.com', '123', '', '06297633287', 'VUGA'),
 (12, 'mama', 'mama@gmail.com', '123', '', '0777720436', 'NGALAWA'),
-(13, 'mama', 'mama@gmail.com', '123', '', '06297633287', 'NGALAWA');
+(13, 'mama', 'mama@gmail.com', '123', '', '06297633287', 'NGALAWA'),
+(14, 'theBitRiddler', 'thebitriddler@gmail.com', '123', '', '0769992202', 'Dar Es Salaam, P. O. Box 50, Tanzania');
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,7 @@ CREATE TABLE `credentials` (
   `Password` varchar(255) NOT NULL,
   `Role` varchar(255) NOT NULL,
   `Status` varchar(255) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `credentials`
@@ -120,7 +123,9 @@ INSERT INTO `credentials` (`LoginID`, `Email`, `Password`, `Role`, `Status`) VAL
 (22, 'nahida@gmail.com', 'b01961afd61098bf57f4d07ccb40253974f231cd482cd9e02', 'IT', '1'),
 (23, 'nahida@gmail.com', '2e4cc278f6ec6294643313986963925e75821d962eee59fd0', 'IT', '1'),
 (26, 'nahida@gmail.com', '4e388fbe7d0026850a2eaa43d3095d4f8ca8d5588550f2c6c', 'IT', '1'),
-(27, 'nahida@gmail.com', '2488ba1198a4d8bdfbc5a9f13955012b670bbf06bfac3915d', 'IT', '1');
+(27, 'nahida@gmail.com', '2488ba1198a4d8bdfbc5a9f13955012b670bbf06bfac3915d', 'IT', '1'),
+(28, 'thebitriddler@gmail.com', 'd8025c7ad3d670fb39a812c74c67a35f10769aa533a42f6d5', 'COMPANY', '1'),
+(29, 'abudujanaally@gmail.com', '06365ef6b2f581865e41e949647cbc35826650a048f130f30', 'IT', '1');
 
 -- --------------------------------------------------------
 
@@ -134,7 +139,7 @@ CREATE TABLE `login` (
   `Password` varchar(255) NOT NULL,
   `Role` varchar(255) NOT NULL,
   `Status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -144,12 +149,21 @@ CREATE TABLE `login` (
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
-  `recipient_email` varchar(255) NOT NULL,
-  `sender_name` varchar(255) NOT NULL,
-  `sender_company` varchar(255) DEFAULT NULL,
-  `message_content` text DEFAULT NULL,
+  `title` text DEFAULT NULL,
+  `applicantId` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `message` text DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `title`, `applicantId`, `name`, `email`, `message`, `created_at`) VALUES
+(9, 'You loose', '1', 'theBitRiddler', 'thebitriddler@gmail.com', 'U got nothing ', '2024-08-15 15:24:14'),
+(10, 'Passed', '16', 'theBitRiddler', 'thebitriddler@gmail.com', 'You made it. Bachu Ally. a.k.a Abudujana Ally', '2024-08-15 15:46:51');
 
 -- --------------------------------------------------------
 
@@ -166,7 +180,7 @@ CREATE TABLE `opportunity` (
   `StartDate` date NOT NULL,
   `EndDate` date NOT NULL,
   `ApplicationDeadline` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `opportunity`
@@ -176,7 +190,11 @@ INSERT INTO `opportunity` (`opportunityID`, `Tittle`, `Description`, `Type`, `Re
 (1, 'Networking', 'Connect wifi and likes', 'part time', 'diploma', '2024-08-03', '2024-08-09', '2024-08-05'),
 (2, 'Database admin', 'overall ', 'Full time', 'diploma', '2024-08-03', '2024-08-31', '2024-08-06'),
 (3, 'Software development', 'Both front end and backend develpers needed', 'Full time', 'Degree ', '2024-08-07', '2024-12-06', '2024-08-10'),
-(4, 'Software development', 'Both front end and backend develpers needed', 'Full time', 'Degree ', '2024-08-07', '2024-12-06', '2024-08-10');
+(4, 'Software development', 'Both front end and backend develpers needed', 'Full time', 'Degree ', '2024-08-07', '2024-12-06', '2024-08-10'),
+(5, 'A. I.', 'Think bot', 'part time', 'Diploma and above', '2024-08-13', '2024-08-13', '2024-08-13'),
+(6, 'Web Developer', 'Creating Websites', 'part time', 'Diploma and above', '2024-08-13', '2025-03-13', '2024-12-13'),
+(7, 'Web Developer', 'Creating Websites', 'part time', 'Diploma and above', '2024-08-13', '2025-03-13', '2024-12-13'),
+(8, 'Web Developer', 'Creating Websites', 'part time', 'Diploma and above', '2024-08-13', '2025-03-13', '2024-12-13');
 
 -- --------------------------------------------------------
 
@@ -192,7 +210,7 @@ CREATE TABLE `specialist` (
   `GitHub_Username` varchar(50) NOT NULL,
   `Speciality` varchar(255) NOT NULL,
   `Expirience` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `specialist`
@@ -214,7 +232,8 @@ INSERT INTO `specialist` (`SpecialistID`, `FullName`, `Email`, `phone_Number`, `
 (20, 'edah', 'nahida@gmail.com', 629763287, 'nahida', 'developer', '2'),
 (21, 'edah', 'nahida@gmail.com', 629763287, 'nahida', 'developer', '2'),
 (22, 'edah', 'nahida@gmail.com', 629763278, 'nahida', 'developer', '2'),
-(23, 'edah', 'nahida@gmail.com', 629763278, 'nahida', 'developer', '2');
+(23, 'edah', 'nahida@gmail.com', 629763278, 'nahida', 'developer', '2'),
+(24, 'Abudujana Ally', 'abudujanaally@gmail.com', 769992202, 'abuDujaanah', 'Web Developer', '4');
 
 --
 -- Indexes for dumped tables
@@ -270,19 +289,19 @@ ALTER TABLE `specialist`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `ApplicantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ApplicantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `CompanyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `CompanyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `credentials`
 --
 ALTER TABLE `credentials`
-  MODIFY `LoginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `LoginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -294,19 +313,19 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `opportunity`
 --
 ALTER TABLE `opportunity`
-  MODIFY `opportunityID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `opportunityID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `specialist`
 --
 ALTER TABLE `specialist`
-  MODIFY `SpecialistID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `SpecialistID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
