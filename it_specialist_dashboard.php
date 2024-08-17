@@ -254,8 +254,8 @@ if ( isset($_POST['delete']) ) {
             <?php } else { ?>
                 <p>No datas found.</p>
             <?php } ?>
-    </ul>
-</div>
+            </ul>
+        </div>
 
 
 
