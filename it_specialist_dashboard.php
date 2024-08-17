@@ -91,7 +91,7 @@ if ( isset($_POST['delete']) ) {
     <div class="container">
         <div class="text-center mb-4">
             <h1>Zan-Tech Opportunities</h1>
-            <h2 class="text-success">User Dashboard</h2>
+            <h2 class="text-success"><?php echo $it[0]['FullName'] ?> Dashboard</h2>
         </div>
         
         <div class="tabs">
