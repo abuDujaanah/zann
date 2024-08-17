@@ -4,6 +4,7 @@ include_once 'DB.php';
 $db = new DBhelper();
 
 $App = $db->getRows("applicants");
+
 ?>
 
 <!DOCTYPE html>
