@@ -23,12 +23,13 @@ if (isset($_POST['confirm'])) {
         $insert_letter = $db->insert("applicants", $docData);
         if($insert_letter){
                 header("location:it_specialist_dashboard.php?msg=success");
-            }
+        }
     
-        } else {
-          echo "failed";
-        }
-        }
+    } else {
+        echo "failed";
+    }
+    
+}
 
 ?>
   

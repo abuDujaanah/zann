@@ -27,6 +27,10 @@ $applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specia
 
 $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
 
+if ( isset($_POST['delete']) ) {
+    $db->delete('applicants', [ 'opportunityID' => $OppId ]);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -241,7 +245,9 @@ $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
                         </div>
                     </div>
                     <div class="actions">
-                        <button class="btn btn-delete">Delete</button>
+                        <form action="it_specialist_dashboard.php" method="POST">
+                            <button name="delete" class="btn btn-delete">Delete</button>
+                        </form>  
                     </div>
                 </li>   
             <?php
