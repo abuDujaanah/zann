@@ -295,12 +295,6 @@ if ( isset($_POST['delete']) ) {
     
 </body>
 
-
-
-
-
-
-
 <script src="./bootstrap/jquery/jquery.min.js"></script>
 <script src="bootstrap/js/popper.js"></script>
 
