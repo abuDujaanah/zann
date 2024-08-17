@@ -98,38 +98,35 @@ $App = $db->getRows("applicants");
     </div>
     <div class="content">
         <div class="row">
-            <?php if (is_array($App)) { ?> 
-                <?php foreach ($App as $a) { ?>
-                    <div class="col-md-4">
-                        <div class="card">
-                            <h2>View Applications</h2>
-                            <hr>
-                            <p><b>Title:</b> <?= $db->getData("opportunity", "Tittle", "opportunityID", $a["opportunityID"]); ?></p>
-                            <p><b>Status: </b><?= $a["Status"] ?></p>
-                            <p><b>Applicant:</b> <?= $db->getData("specialist", "FullName", "SpecialistID", $a["SpecialistID"]); ?></p>
-                            <div class="row mt-2">
+            <?php foreach ($App as $a) { ?>
+                <div class="col-md-4">
+                    <div class="card">
+                        <h2>View Applications</h2>
+                        <hr>
+                        <p><b>Title:</b> <?= $db->getData("opportunity", "Tittle", "opportunityID", $a["opportunityID"]); ?></p>
+                        <p><b>Status: </b><?= $a["Status"] ?></p>
+                        <p><b>Applicant:</b> <?= $db->getData("specialist", "FullName", "SpecialistID", $a["SpecialistID"]); ?></p>
+                        <div class="row mt-2">
+                            
+                            <div class="col-6">
                                 
-                                <div class="col-6">
-                                    
-                                    <a href="message-users.php?applicant=<?= $a['ApplicantID'] ?? ''; ?>" type="button" class="btn btn-danger w-100">reject</a>
-                                </div>
-
-
-                                <div class="col-6">
-                                <a href="message-users.php?applicant=<?= $a['ApplicantID'] ?? ''; ?>" type="button" class="btn btn-danger w-100">accept</a>
-
-
-                                </div>
+                                <a href="message-users.php?applicant=<?= $a['ApplicantID'] ?? ''; ?>" type="button" class="btn btn-danger w-100">reject</a>
                             </div>
-                            <hr>
-                            <div class="row p-2 m-1">
-                                <p><a href="assets/letters/<?= $a['LetterPath'] ?>" target="_blank" class="mt-3">Open Application Letter</a></p>
+
+
+                            <div class="col-6">
+                            <a href="message-users.php?applicant=<?= $a['ApplicantID'] ?? ''; ?>" type="button" class="btn btn-danger w-100">accept</a>
+
+
                             </div>
                         </div>
+                        <hr>
+                        <div class="row p-2 m-1">
+                            <p><a href="assets/letters/<?= $a['LetterPath'] ?>" target="_blank" class="mt-3">Open Application Letter</a></p>
+                        </div>
                     </div>
-                <?php } ?>
-            <?php } else { ?>
-                    <p>Sorry Failed to upload files: Perhaps; No datas found.</p>
+                </div>
+              
             <?php } ?>
         </div>
     </div>
