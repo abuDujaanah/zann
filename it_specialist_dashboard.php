@@ -223,37 +223,37 @@ if ( isset($_POST['delete']) ) {
             </ul>
         </div>
         <div class="section">
-    <h2>My Applications</h2>
-    <ul class="list">
+            <h2>My Applications</h2>
+            <ul class="list">
 
-        <?php if (is_array($Opp_2)) { ?>            
-            <?php 
-            foreach( $Opp_2 as $opp ) {
-            ?>
-                <li class="item" data-id="<?php echo $opp['opportunityID'] ?>">
-                    <div class="details">
-                        <div>
-                            <div class="title">Title: <?php echo $opp['Tittle'] ?></div>
-                            <div class="company">Type: <?php echo $opp['Type'] ?></div>
-                            <div class="company">Requirements: <?php echo $opp['Requirements'] ?></div>
-                            <div class="company">Start Date: <?php echo $opp['StartDate'] ?></div>
-                            <div class="company">End Date: <?php echo $opp['EndDate'] ?></div>
-                            <div class="company">Description: <?php echo $opp['Description'] ?></div>
-                            <div class="company">Deadline: <?php echo $opp['ApplicationDeadline'] ?></div>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <form action="it_specialist_dashboard.php" method="POST">
-                            <button name="delete" class="btn btn-delete">Delete</button>
-                        </form>  
-                    </div>
-                </li>   
-            <?php
-            }
-            ?>
-        <?php } else { ?>
-            <p>No datas found.</p>
-        <?php } ?>
+            <?php if (is_array($Opp_2)) { ?>            
+                <?php 
+                    foreach( $Opp_2 as $opp ) {
+                    ?>
+                        <li class="item" data-id="<?php echo $opp['opportunityID'] ?>">
+                            <div class="details">
+                                <div>
+                                    <div class="title">Title: <?php echo $opp['Tittle'] ?></div>
+                                    <div class="company">Type: <?php echo $opp['Type'] ?></div>
+                                    <div class="company">Requirements: <?php echo $opp['Requirements'] ?></div>
+                                    <div class="company">Start Date: <?php echo $opp['StartDate'] ?></div>
+                                    <div class="company">End Date: <?php echo $opp['EndDate'] ?></div>
+                                    <div class="company">Description: <?php echo $opp['Description'] ?></div>
+                                    <div class="company">Deadline: <?php echo $opp['ApplicationDeadline'] ?></div>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <form action="it_specialist_dashboard.php" method="POST">
+                                    <button name="delete" class="btn btn-delete">Delete</button>
+                                </form>  
+                            </div>
+                        </li>   
+                    <?php
+                    }
+                ?>
+            <?php } else { ?>
+                <p>No datas found.</p>
+            <?php } ?>
     </ul>
 </div>
 
