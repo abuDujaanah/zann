@@ -28,7 +28,7 @@ $applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specia
 $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
 
 if ( isset($_POST['delete']) ) {
-    $db->delete('applicants', [ 'opportunityID' => $OppId ]);
+    $db->delete('applicants', [ 'where' => [ 'opportunityID' => $OppId ]]);
 }
 
 ?>
