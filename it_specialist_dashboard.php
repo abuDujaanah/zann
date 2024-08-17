@@ -195,29 +195,8 @@ if ( isset($_POST['delete']) ) {
                 <?php } ?>
                 
                 <?php } else { ?>
-                    <p>No datas found.</p>
+                    <p>Sorry Failed to upload files: Perhaps; No datas found.</p>
                 <?php } ?>
-
-
-                <div class="col-4 float-right" id="msg">
-                    <?php
-                    if ($_GET['msg'] == "success") { ?>
-                   <!-- <div class="p-2 alert-success">
-                        <h6>File uploaded successfully<span class="fa fa-check-circle float-right ml-4"></span></h6>
-                    </div>-->
-                    <?php
-                    }
-                    if ($_GET['msg'] == "error") { ?>
-                    <div class="p-2 mb-2 alert-danger">
-                        <h6>Sorry Failed to upload file<span class="fa fa-times-circle float-right ml-4"></span></h6>
-                    </div>
-
-                    <?php
-                    }
-                    ?>
-
-                </div>
-
 
                 <!-- Additional opportunity items can be added here -->
             </ul>
