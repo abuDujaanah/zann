@@ -162,35 +162,33 @@ if ( isset($_POST['delete']) ) {
                     </div>
                     <div class="actions">
                     <button class="btn btn-apply btn-primary" data-toggle="modal" data-target="#applicationModal">Apply</button>
+                        <!-- Application Modal -->
+                        <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="applicationModalLabel">Apply for <?= $ops["Tittle"]; ?></h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
 
+                                    
+                                        <form action="application_handler.php" id="applicationForm" method="post" enctype="multipart/form-data">
+                                        <input name="opportunityID" type="hidden" value="<?=$ops['opportunityID'] ?>">
+                                        <input name="SpecialistID" type="hidden" value="<?=$id ?>">
 
-   <!-- Application Modal -->
-<div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="applicationModalLabel">Apply for <?= $ops["Tittle"]; ?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-              
-                <form action="application_handler.php" id="applicationForm" method="post" enctype="multipart/form-data">
-                <input name="opportunityID" type="hidden" value="<?=$ops['opportunityID'] ?>">
-                <input name="SpecialistID" type="hidden" value="<?=$id ?>">
-
-                    <div class="form-group">
-                        <label for="coverLetter">Upload Application Letter:</label>
-                        <input type="file" class="form-control" id="fileToUpload" name="fileToUpload"  accept="application/pdf" required>
-                    </div>
-                    <button type="submit" name="confirm" class="btn btn-primary">Confirm Application</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+                                            <div class="form-group">
+                                                <label for="coverLetter">Upload Application Letter:</label>
+                                                <input type="file" class="form-control" id="fileToUpload" name="fileToUpload"  accept="application/pdf" required>
+                                            </div>
+                                            <button type="submit" name="confirm" class="btn btn-primary">Confirm Application</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </li>
 
