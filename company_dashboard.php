@@ -3,9 +3,13 @@
     include_once 'DB.php';
     $db = new DBHelper();
     
-    $email = $_SESSION['company_email'];
+    if( isset( $_SESSION['company_email'] ) ) {
 
-    $co_name = $db->getData("company", "Company_Name", "email", $email);
+        $email = $_SESSION['company_email'];
+
+        $co_name = $db->getData("company", "Company_Name", "email", $email);
+        
+    }
 
 ?>
 <!DOCTYPE html>
