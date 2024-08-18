@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 15, 2024 at 07:35 PM
+-- Generation Time: Aug 18, 2024 at 06:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -89,7 +89,8 @@ INSERT INTO `company` (`CompanyID`, `Company_Name`, `email`, `Password`, `Comfir
 (11, 'mama', 'mama@gmail.com', '123', '', '06297633287', 'VUGA'),
 (12, 'mama', 'mama@gmail.com', '123', '', '0777720436', 'NGALAWA'),
 (13, 'mama', 'mama@gmail.com', '123', '', '06297633287', 'NGALAWA'),
-(14, 'theBitRiddler', 'thebitriddler@gmail.com', '123', '', '0769992202', 'Dar Es Salaam, P. O. Box 50, Tanzania');
+(14, 'theBitRiddler', 'thebitriddler@gmail.com', '123', '', '0769992202', 'Dar Es Salaam, P. O. Box 50, Tanzania'),
+(15, 'John Doe', 'john@example.com', '123', '', '0769992202', 'Dar Es Salaam, P. O. Box 50, Tanzania');
 
 -- --------------------------------------------------------
 
@@ -125,7 +126,9 @@ INSERT INTO `credentials` (`LoginID`, `Email`, `Password`, `Role`, `Status`) VAL
 (26, 'nahida@gmail.com', '4e388fbe7d0026850a2eaa43d3095d4f8ca8d5588550f2c6c', 'IT', '1'),
 (27, 'nahida@gmail.com', '2488ba1198a4d8bdfbc5a9f13955012b670bbf06bfac3915d', 'IT', '1'),
 (28, 'thebitriddler@gmail.com', 'd8025c7ad3d670fb39a812c74c67a35f10769aa533a42f6d5', 'COMPANY', '1'),
-(29, 'abudujanaally@gmail.com', '06365ef6b2f581865e41e949647cbc35826650a048f130f30', 'IT', '1');
+(29, 'abudujanaally@gmail.com', '06365ef6b2f581865e41e949647cbc35826650a048f130f30', 'IT', '1'),
+(30, 'jane@example.com', '9efbc6244ffd968e442ba5ac50a431deeb10bc90a89a76dbc', 'IT', '1'),
+(31, 'john@example.com', 'b2480b4ca0b2c1d05cddd00836161d2fb04409d4756915f38', 'COMPANY', '1');
 
 -- --------------------------------------------------------
 
@@ -233,7 +236,8 @@ INSERT INTO `specialist` (`SpecialistID`, `FullName`, `Email`, `phone_Number`, `
 (21, 'edah', 'nahida@gmail.com', 629763287, 'nahida', 'developer', '2'),
 (22, 'edah', 'nahida@gmail.com', 629763278, 'nahida', 'developer', '2'),
 (23, 'edah', 'nahida@gmail.com', 629763278, 'nahida', 'developer', '2'),
-(24, 'Abudujana Ally', 'abudujanaally@gmail.com', 769992202, 'abuDujaanah', 'Web Developer', '4');
+(24, 'Abudujana Ally', 'abudujanaally@gmail.com', 769992202, 'abuDujaanah', 'Web Developer', '4'),
+(25, 'Jane Doe', 'jane@example.com', 769992202, 'Jane', 'Web Developer', '4');
 
 --
 -- Indexes for dumped tables
@@ -295,13 +299,13 @@ ALTER TABLE `applicants`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `CompanyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `CompanyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `credentials`
 --
 ALTER TABLE `credentials`
-  MODIFY `LoginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `LoginID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `login`
@@ -325,7 +329,7 @@ ALTER TABLE `opportunity`
 -- AUTO_INCREMENT for table `specialist`
 --
 ALTER TABLE `specialist`
-  MODIFY `SpecialistID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `SpecialistID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
