@@ -1,3 +1,13 @@
+<?php 
+    session_start();
+    include_once 'DB.php';
+    $db = new DBHelper();
+    
+    $email = $_SESSION['company_email'];
+
+    $co_name = $db->getData("company", "Company_Name", "email", $email);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +31,15 @@
         <div class="main-content">
             <header class="header">
                 <div class="header-content">
-                    <h1 style="margin-left: 20px;">Zan-tech Opportuninities</h1>
+                    <h1 style="margin-left: 20px;">
+                        <?php
+                        if($co_name) {
+                            echo $co_name;
+                        } else {
+                            echo 'Zan-tech';
+                        }
+                        ?>
+                         Opportuninities</h1>
                 </div>
             </header>
             <div class="content">
