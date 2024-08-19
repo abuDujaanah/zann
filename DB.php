@@ -1,5 +1,5 @@
 <?php
-require_once('dbconfig.php');
+require('dbconfig.php');
 define('SALT_LENGTH', 9);
 class DBHelper
 {
