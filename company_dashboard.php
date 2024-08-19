@@ -11,10 +11,22 @@
         
     }
 
+    // Include the database connection
     include 'db_connection.php';
 
+    // Assuming $companyId is defined (e.g., from session or another source)
+    $companyId = 1; // Example: replace with the actual company ID you are working with
+
+    $sql = "SELECT avatar_path FROM company WHERE CompanyID = ?";
+    $stmt = $conn->prepare($sql);
+
+    if (!$stmt) {
+        // If preparation failed, show the error
+        die("Error preparing statement: " . $conn->error);
+    }
+
     // Assuming $companyId is already defined (e.g., from session or another source)
-    $sql = "SELECT avatar_path FROM company WHERE id = ?";
+    $sql = "SELECT avatar_path FROM company WHERE CompanyID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $companyId);
     $stmt->execute();

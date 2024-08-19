@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         // Fetch the current avatar path from the database
-        $sql = "SELECT avatar_path FROM company WHERE id = ?";
+        $sql = "SELECT avatar_path FROM company WHERE CompanyID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $companyId); // Assuming $companyId is defined
         $stmt->execute();
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Move the new uploaded file to the target directory
         if (move_uploaded_file($_FILES['avatar']['tmp_name'], $targetFilePath)) {
             // Update the database with the new file path
-            $sql = "UPDATE company SET avatar_path = ? WHERE id = ?";
+            $sql = "UPDATE company SET avatar_path = ? WHERE CompanyID = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param('si', $targetFilePath, $companyId);
 

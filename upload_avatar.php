@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Move the uploaded file to the target directory
         if (move_uploaded_file($_FILES['avatar']['tmp_name'], $targetFilePath)) {
             // Prepare the SQL query to insert the file path into the database
-            $sql = "UPDATE company SET avatar_path = ? WHERE id = ?";
+            $sql = "UPDATE company SET avatar_path = ? WHERE CompanyID = ?";
 
             // Prepare and bind parameters
             $stmt = $conn->prepare($sql);
