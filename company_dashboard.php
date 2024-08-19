@@ -8,14 +8,15 @@
         $email = $_SESSION['company_email'];
 
         $co_name = $db->getData("company", "Company_Name", "email", $email);
+
+        $companyId = $db->getData("company", "CompanyID", "email", $email);
         
+        $_SESSION['company_id'] = $companyId;
+
     }
 
     // Include the database connection
     include 'db_connection.php';
-
-    // Assuming $companyId is defined (e.g., from session or another source)
-    $companyId = 1; // Example: replace with the actual company ID you are working with
 
     $sql = "SELECT avatar_path FROM company WHERE CompanyID = ?";
     $stmt = $conn->prepare($sql);

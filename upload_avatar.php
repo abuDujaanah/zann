@@ -5,6 +5,11 @@
 </form>
 
 <?php
+
+session_start();
+
+$companyId = $_SESSION['company_id'];
+
 // Include database connection
 include 'db_connection.php';
 
