@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2024 at 10:39 AM
+-- Generation Time: Aug 19, 2024 at 01:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -56,7 +56,11 @@ INSERT INTO `applicants` (`ApplicantID`, `opportunityID`, `SpecialistID`, `Appli
 (13, 1, 0, '0000-00-00', '932623.pdf', 'Pending'),
 (14, 1, 5, '0000-00-00', '887073.pdf', 'Pending'),
 (15, 1, 5, '0000-00-00', '523427.pdf', 'Pending'),
-(16, 1, 24, '0000-00-00', '813292.pdf', 'Pending');
+(16, 1, 24, '0000-00-00', '813292.pdf', 'Pending'),
+(17, 1, 25, '0000-00-00', '521355.pdf', 'Pending'),
+(18, 1, 25, '0000-00-00', '366759.pdf', 'Pending'),
+(19, 1, 25, '0000-00-00', '230827.pdf', 'Pending'),
+(20, 1, 25, '0000-00-00', '559621.pdf', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -245,6 +249,12 @@ INSERT INTO `specialist` (`SpecialistID`, `FullName`, `Email`, `phone_Number`, `
 --
 
 --
+-- Indexes for table `applicants`
+--
+ALTER TABLE `applicants`
+  ADD PRIMARY KEY (`ApplicantID`);
+
+--
 -- Indexes for table `company`
 --
 ALTER TABLE `company`
@@ -283,6 +293,12 @@ ALTER TABLE `specialist`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `applicants`
+--
+ALTER TABLE `applicants`
+  MODIFY `ApplicantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `company`
