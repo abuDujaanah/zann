@@ -15,7 +15,6 @@ $it = $db->getRows("specialist",  ['where' => ['SpecialistId' => $id]]);
 
 $Opp = $db->getRows("opportunity");
 
-
 $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
 
 $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
