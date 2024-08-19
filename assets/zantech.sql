@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2024 at 06:04 PM
+-- Generation Time: Aug 19, 2024 at 10:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -71,26 +71,27 @@ CREATE TABLE `company` (
   `Password` varchar(244) NOT NULL,
   `Comfirm_Password` varchar(244) NOT NULL,
   `Phone` varchar(12) NOT NULL,
-  `Address` varchar(255) NOT NULL
+  `Address` varchar(255) NOT NULL,
+  `avatar_path` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`CompanyID`, `Company_Name`, `email`, `Password`, `Comfirm_Password`, `Phone`, `Address`) VALUES
-(4, 'codesolutin', 'cs@gmal.com', '54321', '', '779663389', 'ibweni'),
-(5, 'sz', 'suza@gmal.com', '12345', '', '5567', 'hn'),
-(6, 'TCRA', 'tcra@gmal.com', 'azm', '', '0778876', 'gjjk'),
-(7, 'IPA', 'IPA@gmal.com', '12345', '', '064567899', 'Jumbi'),
-(8, 'EDH', 'edh@gmal.com', 'edh', '', '0623380991', 'Seoul'),
-(9, 'abdy', 'abdy12@gmail.com', '123', '', '06297633287', 'NGALAWA'),
-(10, 'mama', 'mama@gmail.com', '123', '', '0777720436', 'VUGA'),
-(11, 'mama', 'mama@gmail.com', '123', '', '06297633287', 'VUGA'),
-(12, 'mama', 'mama@gmail.com', '123', '', '0777720436', 'NGALAWA'),
-(13, 'mama', 'mama@gmail.com', '123', '', '06297633287', 'NGALAWA'),
-(14, 'theBitRiddler', 'thebitriddler@gmail.com', '123', '', '0769992202', 'Dar Es Salaam, P. O. Box 50, Tanzania'),
-(15, 'John Doe', 'john@example.com', '123', '', '0769992202', 'Dar Es Salaam, P. O. Box 50, Tanzania');
+INSERT INTO `company` (`CompanyID`, `Company_Name`, `email`, `Password`, `Comfirm_Password`, `Phone`, `Address`, `avatar_path`) VALUES
+(4, 'codesolutin', 'cs@gmal.com', '54321', '', '779663389', 'ibweni', NULL),
+(5, 'sz', 'suza@gmal.com', '12345', '', '5567', 'hn', NULL),
+(6, 'TCRA', 'tcra@gmal.com', 'azm', '', '0778876', 'gjjk', NULL),
+(7, 'IPA', 'IPA@gmal.com', '12345', '', '064567899', 'Jumbi', NULL),
+(8, 'EDH', 'edh@gmal.com', 'edh', '', '0623380991', 'Seoul', NULL),
+(9, 'abdy', 'abdy12@gmail.com', '123', '', '06297633287', 'NGALAWA', NULL),
+(10, 'mama', 'mama@gmail.com', '123', '', '0777720436', 'VUGA', NULL),
+(11, 'mama', 'mama@gmail.com', '123', '', '06297633287', 'VUGA', NULL),
+(12, 'mama', 'mama@gmail.com', '123', '', '0777720436', 'NGALAWA', NULL),
+(13, 'mama', 'mama@gmail.com', '123', '', '06297633287', 'NGALAWA', NULL),
+(14, 'theBitRiddler', 'thebitriddler@gmail.com', '123', '', '0769992202', 'Dar Es Salaam, P. O. Box 50, Tanzania', NULL),
+(15, 'John Doe', 'john@example.com', '123', '', '0769992202', 'Dar Es Salaam, P. O. Box 50, Tanzania', 'uploads/66c2f8e4c15a0_Screenshot 2024-04-22 093257.png');
 
 -- --------------------------------------------------------
 
@@ -244,12 +245,6 @@ INSERT INTO `specialist` (`SpecialistID`, `FullName`, `Email`, `phone_Number`, `
 --
 
 --
--- Indexes for table `applicants`
---
-ALTER TABLE `applicants`
-  ADD PRIMARY KEY (`ApplicantID`);
-
---
 -- Indexes for table `company`
 --
 ALTER TABLE `company`
@@ -288,12 +283,6 @@ ALTER TABLE `specialist`
 --
 -- AUTO_INCREMENT for dumped tables
 --
-
---
--- AUTO_INCREMENT for table `applicants`
---
-ALTER TABLE `applicants`
-  MODIFY `ApplicantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `company`

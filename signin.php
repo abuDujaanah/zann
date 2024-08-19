@@ -1,6 +1,6 @@
 <?php
 
-include_once 'DB.php';
+include 'DB.php';
 $db = new DBhelper();
 $it = $db->getRows("specialist");
 

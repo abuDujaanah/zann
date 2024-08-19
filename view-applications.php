@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'DB.php';
+include 'DB.php';
 $db = new DBhelper();
 
 $App = $db->getRows("applicants");

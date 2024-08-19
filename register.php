@@ -3,7 +3,7 @@
 
 session_start();
 
-require_once "DB.php";
+require "DB.php";
 $db = new DBHelper();
 
 
