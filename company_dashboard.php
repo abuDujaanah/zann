@@ -25,8 +25,6 @@
         die("Error preparing statement: " . $conn->error);
     }
 
-    // Assuming $companyId is already defined (e.g., from session or another source)
-    $sql = "SELECT avatar_path FROM company WHERE CompanyID = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param('i', $companyId);
     $stmt->execute();
@@ -48,7 +46,7 @@
     <div class="container">
         <div class="sidebar">
             <div class="profile">
-                <?php if( $avatar_path ) { ?>
+                <?php if( $avatarPath ) { ?>
                 <a href="update_avatar.php"><img src="<?php echo $avatarPath; ?>" alt="Profile Image"></a>
                 <?php } else { ?>
                 <a href="upload_avatar.php"><img src="assets/images/avatar.jpeg" alt="Profile Image"></a>
