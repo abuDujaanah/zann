@@ -11,6 +11,8 @@
         
     }
 
+    include 'db_connection.php';
+
     // Assuming $companyId is already defined (e.g., from session or another source)
     $sql = "SELECT avatar_path FROM company WHERE id = ?";
     $stmt = $conn->prepare($sql);
