@@ -4,14 +4,14 @@ include_once 'DB.php';
 $db = new DBhelper();
 
 
-$loginId=$_SESSION['ActiveUser'];
+$loginId = $_SESSION['ActiveUser'];
 
 
-$eml = $db->getData("credentials","Email","LoginID",$loginId);
+$eml = $db->getData("credentials", "Email", "LoginID", $loginId);
 
-$id = $db->getData("specialist","SpecialistID","Email",$eml);
+$id = $db->getData("specialist", "SpecialistID", "Email", $eml);
 
-$it = $db->getRows("specialist",  [ 'where' => ['SpecialistId' => $id ] ]);
+$it = $db->getRows("specialist",  ['where' => ['SpecialistId' => $id]]);
 
 $Opp = $db->getRows("opportunity");
 
@@ -27,13 +27,14 @@ $applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specia
 
 $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
 
-if ( isset($_POST['delete']) ) {
-    $db->delete('applicants', [ 'where' => [ 'opportunityID' => $OppId ]]);
+if (isset($_POST['delete'])) {
+    $db->delete('applicants', ['where' => ['opportunityID' => $OppId]]);
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -50,15 +51,19 @@ if ( isset($_POST['delete']) ) {
             padding: 16px;
             margin-bottom: 16px;
         }
+
         .project-card h5 {
             margin-top: 0;
         }
+
         .project-card p {
             margin-bottom: 8px;
         }
+
         .project-card .actions {
             margin-top: 8px;
         }
+
         .project-card .actions button {
             margin-right: 8px;
         }
@@ -87,23 +92,24 @@ if ( isset($_POST['delete']) ) {
         });
     </script>
 </head>
+
 <body>
     <div class="container">
         <div class="text-center mb-4">
             <h1>Zan-Tech Opportunities</h1>
             <h2 class="text-success"><?php echo $it[0]['FullName'] ?> Dashboard</h2>
         </div>
-        
+
         <div class="tabs">
             <div class="tab">Profile</div>
             <div class="tab">Available Opportunities</div>
             <div class="tab">My Applications</div>
             <div class="tab">Messages</div>
             <a class="tab" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-           
+                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                Logout
+            </a>
+
         </div>
 
         <div class="section">
@@ -111,14 +117,14 @@ if ( isset($_POST['delete']) ) {
             <div class="profile-content">
                 <div class="personal-details">
                     <h5 class="text-success">Personal Details</h5>
-                  
+
                     <ul>
                         <li>Name: <?php echo $it[0]['FullName']; ?></li>
                         <li>Email: <?php echo $it[0]['Email']; ?></li>
                         <li>Phone: <?php echo $it[0]['phone_Number']; ?></li>
                     </ul>
-     
-                
+
+
                 </div>
                 <div class="github">
                     <h5 class="text-success">GitHub</h5>
@@ -133,7 +139,7 @@ if ( isset($_POST['delete']) ) {
                         <li>View CV: <a class="text-success" href="https://github.com/nahida" target="_blank">My CV</a></li>
                     </ul>
                 </div>
-        
+
                 <div class="row mt-3">
                     <div class="col-12">
                         <button class="btn btn-success m-1 float-end">Update Profile</button>
@@ -147,53 +153,53 @@ if ( isset($_POST['delete']) ) {
             <h2>Available Opportunities</h2>
 
             <ul class="list">
-        
-            <?php if (is_array($Opp)) { ?> 
-                <?php 
+
+                <?php if (is_array($Opp)) { ?>
+                    <?php
                     foreach ($Opp as $ops) {
-                        ?>
-                <li class="item">
-                    <div class="details">
-                        <div>
-                            <div class="title"><?=  $ops["Tittle"]; ?></div>
-                            <div class="company"><?= $ops["Requirements"]; ?></div>
-                            <p> <?= $ops["ApplicationDeadline"]; ?></p>
-                        </div>
-                    </div>
-                    <div class="actions">
-                    <button class="btn btn-apply btn-primary" data-toggle="modal" data-target="#applicationModal">Apply</button>
-                        <!-- Application Modal -->
-                        <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="applicationModalLabel">Apply for <?= $ops["Tittle"]; ?></h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-
-                                    
-                                        <form action="application_handler.php" id="applicationForm" method="post" enctype="multipart/form-data">
-                                        <input name="opportunityID" type="hidden" value="<?=$ops['opportunityID'] ?>">
-                                        <input name="SpecialistID" type="hidden" value="<?=$id ?>">
-
-                                            <div class="form-group">
-                                                <label for="coverLetter">Upload Application Letter:</label>
-                                                <input type="file" class="form-control" id="fileToUpload" name="fileToUpload"  accept="application/pdf" required>
+                    ?>
+                        <li class="item">
+                            <div class="details">
+                                <div>
+                                    <div class="title"><?= $ops["Tittle"]; ?></div>
+                                    <div class="company"><?= $ops["Requirements"]; ?></div>
+                                    <p> <?= $ops["ApplicationDeadline"]; ?></p>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="btn btn-apply btn-primary" data-toggle="modal" data-target="#applicationModal">Apply</button>
+                                <!-- Application Modal -->
+                                <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="applicationModalLabel">Apply for <?= $ops["Tittle"]; ?></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
-                                            <button type="submit" name="confirm" class="btn btn-primary">Confirm Application</button>
-                                        </form>
+                                            <div class="modal-body">
+
+
+                                                <form action="application_handler.php" id="applicationForm" method="post" enctype="multipart/form-data">
+                                                    <input name="opportunityID" type="hidden" value="<?= $ops['opportunityID'] ?>">
+                                                    <input name="SpecialistID" type="hidden" value="<?= $id ?>">
+
+                                                    <div class="form-group">
+                                                        <label for="coverLetter">Upload Application Letter:</label>
+                                                        <input type="file" class="form-control" id="fileToUpload" name="fileToUpload" accept="application/pdf" required>
+                                                    </div>
+                                                    <button type="submit" name="confirm" class="btn btn-primary">Confirm Application</button>
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </li>
+                        </li>
 
-                <?php } ?>
-                
+                    <?php } ?>
+
                 <?php } else { ?>
                     <p>Sorry Failed to upload files: Perhaps; No datas found.</p>
                 <?php } ?>
@@ -205,9 +211,9 @@ if ( isset($_POST['delete']) ) {
             <h2>My Applications</h2>
             <ul class="list">
 
-            <?php if (is_array($Opp_2)) { ?>            
-                <?php 
-                    foreach( $Opp_2 as $opp ) {
+                <?php if (is_array($Opp_2)) { ?>
+                    <?php
+                    foreach ($Opp_2 as $opp) {
                     ?>
                         <li class="item" data-id="<?php echo $opp['opportunityID'] ?>">
                             <div class="details">
@@ -224,15 +230,15 @@ if ( isset($_POST['delete']) ) {
                             <div class="actions">
                                 <form action="it_specialist_dashboard.php" method="POST">
                                     <button name="delete" class="btn btn-delete">Delete</button>
-                                </form>  
+                                </form>
                             </div>
-                        </li>   
+                        </li>
                     <?php
                     }
-                ?>
-            <?php } else { ?>
-                <p>No datas found.</p>
-            <?php } ?>
+                    ?>
+                <?php } else { ?>
+                    <p>No datas found.</p>
+                <?php } ?>
             </ul>
         </div>
 
@@ -243,34 +249,34 @@ if ( isset($_POST['delete']) ) {
                 <div class="col-lg-6">
                     <h2>Messages</h2>
                 </div>
-              
+
             </div>
             <hr>
-           
+
             <ul class="list">
 
-            <?php if (is_array($msgs)) { ?>
-                <?php foreach ($msgs as $msg) { ?>
-                    <li class="item">
-                        <div class="details">
-                            <div>
-                                <div class="title">Title: <?php echo $msg['title'] ?></div>
-                                <div class="company">Company: <?php echo $msg['name'] ?></div>
+                <?php if (is_array($msgs)) { ?>
+                    <?php foreach ($msgs as $msg) { ?>
+                        <li class="item">
+                            <div class="details">
+                                <div>
+                                    <div class="title">Title: <?php echo $msg['title'] ?></div>
+                                    <div class="company">Company: <?php echo $msg['name'] ?></div>
+                                </div>
+                                <p><?php echo $msg['message'] ?>.</p>
                             </div>
-                            <p><?php echo $msg['message'] ?>.</p>
-                        </div>
-                    </li>
+                        </li>
+                    <?php } ?>
+                <?php } else { ?>
+                    <p>No messages found.</p>
                 <?php } ?>
-            <?php } else { ?>
-                <p>No messages found.</p>
-            <?php } ?>
 
-                
+
             </ul>
         </div>
 
-       
-       
+
+
     </div>
 
     <!-- Logout Modal-->
@@ -292,7 +298,7 @@ if ( isset($_POST['delete']) ) {
             </div>
         </div>
     </div>
-    
+
 </body>
 
 <script src="./bootstrap/jquery/jquery.min.js"></script>
