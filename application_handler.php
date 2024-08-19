@@ -10,8 +10,6 @@ $fileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 $fileName = rand(1000, 1000000) . '.' . $fileType;
 $uploadOk = 1;
 
-echo $_POST['opportunityID'];
-
 if (isset($_POST['confirm'])) {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_dir . $fileName)) {
         $docData = array(
