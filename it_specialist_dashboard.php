@@ -219,6 +219,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <li class="item" data-id="<?php echo $opp['opportunityID'] ?>">
                             <div class="details">
                                 <div>
+                                    <div class="title">Opportunity id: <?php echo $opp['opportunityID'] ?></div>
                                     <div class="title">Title: <?php echo $opp['Tittle'] ?></div>
                                     <div class="company">Type: <?php echo $opp['Type'] ?></div>
                                     <div class="company">Requirements: <?php echo $opp['Requirements'] ?></div>
