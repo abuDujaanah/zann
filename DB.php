@@ -198,26 +198,8 @@ class DBHelper
      * @param string name of the table
      * @param array where condition on deleting data
      */
-    // public function delete($table, $conditions)
-    // {
-    //     $whereSql = '';
-    //     if (!empty($conditions) && is_array($conditions)) {
-    //         $whereSql .= ' WHERE ';
-    //         $i = 0;
-    //         foreach ($conditions as $key => $value) {
-    //             $pre = ($i > 0) ? ' AND ' : '';
-    //             $whereSql .= $pre . $key . " = '" . $value . "'";
-    //             $i++;
-    //         }
-    //     }
-    //     $sql = "DELETE FROM " . $table . $whereSql;
-    //     $delete = $this->conn->exec($sql);
-    //     return $delete ? $delete : false;
-    // }
-
     public function delete($table, $conditions) {
-        // Check if $conditions is an array and build the WHERE clause
-        if (is_array($conditions)) {
+        if (is_array($conditions) && !empty($conditions)) {
             $whereClause = '';
             $params = [];
 
@@ -226,15 +208,22 @@ class DBHelper
                 $params[] = $value;
             }
 
-            // Remove the trailing " AND "
             $whereClause = rtrim($whereClause, ' AND ');
+
+            if (empty($whereClause)) {
+                throw new Exception("No conditions provided, aborting delete to prevent accidental deletion of all records.");
+            }
 
             $sql = "DELETE FROM $table WHERE $whereClause";
 
             $stmt = $this->conn->prepare($sql);
-            return $stmt->execute($params);
+            if ($stmt->execute($params)) {
+                return $stmt->rowCount();
+            } else {
+                return false;
+            }
         } else {
-            throw new Exception("Conditions must be an array.");
+            throw new Exception("Conditions must be a non-empty array.");
         }
     }
 
