@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'DB.php';
+include 'DB.php';
 $db = new DBhelper();
 
 
@@ -28,7 +28,7 @@ $applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specia
 $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
 
 if (isset($_POST['delete'])) {
-    $db->delete('applicants', ['where' => ['opportunityID' => $OppId]]);
+    $db->delete('applicants', ['opportunityID' => $OppId]);
 }
 
 ?>

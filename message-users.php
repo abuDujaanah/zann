@@ -7,7 +7,7 @@
         if (isset($_SESSION['company_email'])) {
             $co_mail = $_SESSION['company_email'];
 
-            include_once 'DB.php';
+            include 'DB.php';
             $db = new DBhelper();
 
             $co_name = $db->getData("company", "Company_Name", "email", $co_mail);
@@ -43,7 +43,7 @@
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-        include_once 'DB.php';
+        include 'DB.php';
         $db = new DBhelper();
 
         $applicant = $_POST['applicant'];

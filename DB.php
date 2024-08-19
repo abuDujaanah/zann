@@ -198,21 +198,44 @@ class DBHelper
      * @param string name of the table
      * @param array where condition on deleting data
      */
-    public function delete($table, $conditions)
-    {
-        $whereSql = '';
-        if (!empty($conditions) && is_array($conditions)) {
-            $whereSql .= ' WHERE ';
-            $i = 0;
-            foreach ($conditions as $key => $value) {
-                $pre = ($i > 0) ? ' AND ' : '';
-                $whereSql .= $pre . $key . " = '" . $value . "'";
-                $i++;
+    // public function delete($table, $conditions)
+    // {
+    //     $whereSql = '';
+    //     if (!empty($conditions) && is_array($conditions)) {
+    //         $whereSql .= ' WHERE ';
+    //         $i = 0;
+    //         foreach ($conditions as $key => $value) {
+    //             $pre = ($i > 0) ? ' AND ' : '';
+    //             $whereSql .= $pre . $key . " = '" . $value . "'";
+    //             $i++;
+    //         }
+    //     }
+    //     $sql = "DELETE FROM " . $table . $whereSql;
+    //     $delete = $this->conn->exec($sql);
+    //     return $delete ? $delete : false;
+    // }
+
+    public function delete($table, $conditions) {
+        // Check if $conditions is an array and build the WHERE clause
+        if (is_array($conditions)) {
+            $whereClause = '';
+            $params = [];
+
+            foreach ($conditions as $column => $value) {
+                $whereClause .= "$column = ? AND ";
+                $params[] = $value;
             }
+
+            // Remove the trailing " AND "
+            $whereClause = rtrim($whereClause, ' AND ');
+
+            $sql = "DELETE FROM $table WHERE $whereClause";
+
+            $stmt = $this->conn->prepare($sql);
+            return $stmt->execute($params);
+        } else {
+            throw new Exception("Conditions must be an array.");
         }
-        $sql = "DELETE FROM " . $table . $whereSql;
-        $delete = $this->conn->exec($sql);
-        return $delete ? $delete : false;
     }
 
 

@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    include_once 'DB.php';
+    include 'DB.php';
     $db = new DBHelper();
     
     if( isset( $_SESSION['company_email'] ) ) {
