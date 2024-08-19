@@ -19,7 +19,6 @@ $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
 
 $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
 
-
 $specialistId = $db->getData("specialist", "SpecialistID", "Email", $eml);
 
 $applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specialistId);
