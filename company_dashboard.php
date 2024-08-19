@@ -11,6 +11,16 @@
         
     }
 
+    // Assuming $companyId is already defined (e.g., from session or another source)
+    $sql = "SELECT avatar_path FROM company WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('i', $companyId);
+    $stmt->execute();
+    $stmt->bind_result($avatarPath);
+    $stmt->fetch();
+    $stmt->close();
+    $conn->close();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +34,11 @@
     <div class="container">
         <div class="sidebar">
             <div class="profile">
-                <img src="assets/images/avatar.jpeg" alt="Profile Image">
+                <?php if( $avatar_path ) { ?>
+                <a href="update_avatar.php"><img src="<?php echo $avatarPath; ?>" alt="Profile Image"></a>
+                <?php } else { ?>
+                <a href="upload_avatar.php"><img src="assets/images/avatar.jpeg" alt="Profile Image"></a>
+                <?php } ?> 
             </div>
             <a href="post-opportunity.php">Opportunities</a>
             <a href="view-applications.php">Applications</a>
