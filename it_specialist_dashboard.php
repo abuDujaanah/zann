@@ -29,8 +29,9 @@ $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
 
 $OppoId = ['opportunityID' => $OppId];
 
-if (isset($_POST['delete'])) {
-    $db->delete('applicants', $OppoId );
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $Opp_ID = $_POST['op_id'];
+    $db->delete('applicants', $Opp_ID );
 }
 
 ?>
@@ -231,6 +232,7 @@ if (isset($_POST['delete'])) {
                             </div>
                             <div class="actions">
                                 <form action="it_specialist_dashboard.php" method="POST">
+                                    <input type="hidden" name="op_id" value="<?php echo $opp['opportunityID'] ?>">
                                     <button name="delete" class="btn btn-delete">Delete</button>
                                 </form>
                             </div>
