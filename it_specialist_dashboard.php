@@ -4,6 +4,7 @@ include 'DB.php';
 $db = new DBhelper();
 
 $loginId = $_SESSION['ActiveUser'] ?? null; // Check if session variable exists
+$msgs = []; // Initialize $msgs as an empty array
 
 if ($loginId) {
 
@@ -15,6 +16,7 @@ if ($loginId) {
         $Opp = $db->getRows("opportunity");
         $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
 
+        $Opp_2 = []; // Initialize $Opp_2 as an empty array
         if ($OppId) {
             $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
         }
@@ -169,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <ul class="list">
 
-                    <?php if (is_array($Opp)) { ?>
+                    <?php if (!empty($Opp)) { ?>
                         <?php
                         foreach ($Opp as $ops) {
                         ?>
@@ -227,7 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <h2>My Applications</h2>
                 <ul class="list">
 
-                    <?php if (is_array($Opp_2)) { ?>
+                    <?php if (!empty($Opp_2)) { ?>
                         <?php
                         foreach ($Opp_2 as $opp) {
                         ?>
@@ -273,7 +275,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <ul class="list">
 
-                    <?php if (is_array($msgs)) { ?>
+                    <?php if ( !empty($msgs) ) { ?>
                         <?php foreach ($msgs as $msg) { ?>
                             <li class="item">
                                 <div class="details">
