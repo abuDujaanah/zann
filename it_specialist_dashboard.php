@@ -1,42 +1,89 @@
 <?php
+// session_start();
+// include 'DB.php';
+// $db = new DBhelper();
+
+
+// $loginId = $_SESSION['ActiveUser'];
+
+
+// $eml = $db->getData("credentials", "Email", "LoginID", $loginId);
+
+// $id = $db->getData("specialist", "SpecialistID", "Email", $eml);
+
+// $it = $db->getRows("specialist",  ['where' => ['SpecialistId' => $id]]);
+
+// $Opp = $db->getRows("opportunity");
+
+// $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
+
+// $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
+
+// $specialistId = $db->getData("specialist", "SpecialistID", "Email", $eml);
+
+// $applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specialistId);
+
+// $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
+
+// $OppoId = ['opportunityID' => $OppId];
+
+// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//     $Opp_ID = $_POST['op_id'];
+    
+//     $conditions = [
+//         'opportunityID' => $Opp_ID,
+//         'SpecialistID' => $id
+//     ];
+    
+//     $db->delete('applicants', $conditions );
+// }
+
+
+
+
 session_start();
 include 'DB.php';
 $db = new DBhelper();
 
+$loginId = $_SESSION['ActiveUser'] ?? null; // Check if session variable exists
 
-$loginId = $_SESSION['ActiveUser'];
+if ($loginId) {
+    $eml = $db->getData("credentials", "Email", "LoginID", $loginId);
+    $id = $db->getData("specialist", "SpecialistID", "Email", $eml);
 
+    if ($id) {
+        $it = $db->getRows("specialist", ['where' => ['SpecialistId' => $id]]);
+        $Opp = $db->getRows("opportunity");
+        $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
 
-$eml = $db->getData("credentials", "Email", "LoginID", $loginId);
+        if ($OppId) {
+            $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
+        }
 
-$id = $db->getData("specialist", "SpecialistID", "Email", $eml);
+        $specialistId = $db->getData("specialist", "SpecialistID", "Email", $eml);
+        $applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specialistId);
 
-$it = $db->getRows("specialist",  ['where' => ['SpecialistId' => $id]]);
-
-$Opp = $db->getRows("opportunity");
-
-$OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
-
-$Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
-
-$specialistId = $db->getData("specialist", "SpecialistID", "Email", $eml);
-
-$applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specialistId);
-
-$msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
-
-$OppoId = ['opportunityID' => $OppId];
+        if ($applicantId) {
+            $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
+        }
+    }
+} else {
+    echo "User not logged in.";
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $Opp_ID = $_POST['op_id'];
-    
-    $conditions = [
-        'opportunityID' => $Opp_ID,
-        'SpecialistID' => $id
-    ];
-    
-    $db->delete('applicants', $conditions );
+    $Opp_ID = $_POST['op_id'] ?? null; // Check if POST variable exists
+
+    if ($Opp_ID && $id) {
+        $conditions = [
+            'opportunityID' => $Opp_ID,
+            'SpecialistID' => $id
+        ];
+
+        $db->delete('applicants', $conditions);
+    }
 }
+
 
 ?>
 <!DOCTYPE html>
