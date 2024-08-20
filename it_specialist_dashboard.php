@@ -5,6 +5,7 @@ $db = new DBhelper();
 
 $loginId = $_SESSION['ActiveUser'] ?? null; // Check if session variable exists
 $msgs = []; // Initialize $msgs as an empty array
+$id = 0;
 
 if ($loginId) {
 
