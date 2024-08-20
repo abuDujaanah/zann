@@ -169,9 +169,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                             </div>
                             <div class="actions">
-                                <button class="btn btn-apply btn-primary" data-toggle="modal" data-target="#applicationModal">Apply</button>
+                                <button class="btn btn-apply btn-primary" data-toggle="modal" data-target="#applicationModal_<?= $ops['opportunityID'] ?>">Apply</button>
                                 <!-- Application Modal -->
-                                <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="applicationModal_<?= $ops['opportunityID'] ?>" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel_<?= $ops['opportunityID'] ?>" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -183,7 +183,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             <div class="modal-body">
 
 
-                                                <form action="application_handler.php" id="applicationForm" method="post" enctype="multipart/form-data">
+                                                <form action="application_handler.php" id="applicationForm_<?= $ops['opportunityID'] ?>" method="post" enctype="multipart/form-data">
                                                     <input name="opportunityID" type="hidden" value="<?= $ops['opportunityID'] ?>">
                                                     <input name="SpecialistID" type="hidden" value="<?= $id ?>">
 
