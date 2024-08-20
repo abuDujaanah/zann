@@ -1,4 +1,5 @@
 <?php 
+    $co_name = 0;
 
     if (isset($_GET['applicant'])) {
         $applic = $_GET['applicant'];
