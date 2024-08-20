@@ -1,46 +1,4 @@
 <?php
-// session_start();
-// include 'DB.php';
-// $db = new DBhelper();
-
-
-// $loginId = $_SESSION['ActiveUser'];
-
-
-// $eml = $db->getData("credentials", "Email", "LoginID", $loginId);
-
-// $id = $db->getData("specialist", "SpecialistID", "Email", $eml);
-
-// $it = $db->getRows("specialist",  ['where' => ['SpecialistId' => $id]]);
-
-// $Opp = $db->getRows("opportunity");
-
-// $OppId = $db->getData("applicants", "opportunityID", "SpecialistId", $id);
-
-// $Opp_2 = $db->getRows("opportunity", ['where' => ['opportunityId' => $OppId]]);
-
-// $specialistId = $db->getData("specialist", "SpecialistID", "Email", $eml);
-
-// $applicantId = $db->getData("applicants", "ApplicantID", "SpecialistID", $specialistId);
-
-// $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
-
-// $OppoId = ['opportunityID' => $OppId];
-
-// if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//     $Opp_ID = $_POST['op_id'];
-    
-//     $conditions = [
-//         'opportunityID' => $Opp_ID,
-//         'SpecialistID' => $id
-//     ];
-    
-//     $db->delete('applicants', $conditions );
-// }
-
-
-
-
 session_start();
 include 'DB.php';
 $db = new DBhelper();
