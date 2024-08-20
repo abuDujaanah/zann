@@ -6,6 +6,7 @@ $db = new DBhelper();
 $loginId = $_SESSION['ActiveUser'] ?? null; // Check if session variable exists
 
 if ($loginId) {
+
     $eml = $db->getData("credentials", "Email", "LoginID", $loginId);
     $id = $db->getData("specialist", "SpecialistID", "Email", $eml);
 
@@ -24,6 +25,7 @@ if ($loginId) {
         if ($applicantId) {
             $msgs = $db->getRows("messages", ['where' => ['applicantId' => $applicantId]]);
         }
+        
     }
 } else {
     echo "User not logged in.";
@@ -42,9 +44,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-
 ?>
-<!DOCTYPE html>
+
+<?php if( $loginId ) { ?>
+
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -325,3 +329,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!-- Include Bootstrap JS and dependencies -->
 
 </html>
+
+<?php } ?>
+
