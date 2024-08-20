@@ -162,6 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <li class="item">
                             <div class="details">
                                 <div>
+                                    <div class="opportunityID"><?= $ops["opportunityID"]; ?></div>
                                     <div class="title"><?= $ops["Tittle"]; ?></div>
                                     <div class="company"><?= $ops["Requirements"]; ?></div>
                                     <p> <?= $ops["ApplicationDeadline"]; ?></p>
