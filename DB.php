@@ -200,6 +200,7 @@ class DBHelper
      */
     public function delete($table, $conditions) {
         if (is_array($conditions) && !empty($conditions)) {
+            
             $whereClause = '';
             $params = [];
 

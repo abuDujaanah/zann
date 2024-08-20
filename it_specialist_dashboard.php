@@ -29,7 +29,13 @@ $OppoId = ['opportunityID' => $OppId];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Opp_ID = $_POST['op_id'];
-    $db->delete('applicants', $Opp_ID );
+    
+    $conditions = [
+        'opportunityID' => $Opp_ID,
+        'SpecialistID' => $id
+    ];
+    
+    $db->delete('applicants', $conditions );
 }
 
 ?>
