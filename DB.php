@@ -311,5 +311,24 @@ class DBHelper
         return $results;
     }
 
+
+    public function getSingleData($query, $params = []) 
+    {
+        try {
+            $stmt = $this->conn->prepare($query);
+            $stmt->execute($params);  // Execute with params directly
+            return $stmt->fetch(PDO::FETCH_ASSOC);  // Fetch a single row
+        } catch (PDOException $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+
+
+    public function getMultipleData($query, $params) 
+    {
+        $stmt = $this->conn->prepare($query); // Use $this->conn instead
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } 
     
 }

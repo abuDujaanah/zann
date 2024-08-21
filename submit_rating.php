@@ -21,10 +21,10 @@ if (!empty($user_mail) && !empty($rating)) {
     // Update the specialist's rating
     $sql = "UPDATE specialist SET rate = ? WHERE Email = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ii", $rating, $user_mail);
+    $stmt->bind_param("is", $rating, $user_mail);
 
     if ($stmt->execute()) {
-        header("location:company_dashboard.php?msg=rated");
+        header("Location: company_dashboard.php?msg=rated");
     } else {
         echo "Error updating rating: " . $conn->error;
     }
@@ -35,5 +35,4 @@ if (!empty($user_mail) && !empty($rating)) {
 }
 
 $conn->close();
-
-
+?>
