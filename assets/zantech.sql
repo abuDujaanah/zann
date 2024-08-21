@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2024 at 10:07 AM
+-- Generation Time: Aug 21, 2024 at 10:55 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -173,7 +173,11 @@ INSERT INTO `messages` (`id`, `title`, `applicantId`, `name`, `email`, `message`
 (13, 'Post', '40', '', '', 'U didnt make it?', '2024-08-21 07:31:28'),
 (14, 'How', '40', '', '', 'about now', '2024-08-21 07:52:36'),
 (15, 'How', '40', '', '', 'about now', '2024-08-21 08:03:48'),
-(16, 'How', '40', '', '', 'about now', '2024-08-21 08:03:53');
+(16, 'How', '40', '', '', 'about now', '2024-08-21 08:03:53'),
+(17, 'How', '40', '', '', 'about now', '2024-08-21 08:18:24'),
+(18, 'How', '40', '', '', 'about now', '2024-08-21 08:19:48'),
+(19, 'U', '16', 'John Doe', 'john@example.com', 'made it now', '2024-08-21 08:32:05'),
+(20, 'Abuu', '16', 'theBitRiddler', 'thebitriddler@gmail.com', 'U made it', '2024-08-21 08:41:41');
 
 -- --------------------------------------------------------
 
@@ -324,7 +328,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `opportunity`
