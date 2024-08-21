@@ -12,6 +12,7 @@
         $companyId = $db->getData("company", "CompanyID", "email", $email);
         
         $_SESSION['company_id'] = $companyId;
+        $_SESSION['company_name'] = $co_name;
 
     }
 

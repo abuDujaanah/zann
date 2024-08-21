@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 19, 2024 at 01:20 PM
+-- Generation Time: Aug 21, 2024 at 10:07 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -57,10 +57,7 @@ INSERT INTO `applicants` (`ApplicantID`, `opportunityID`, `SpecialistID`, `Appli
 (14, 1, 5, '0000-00-00', '887073.pdf', 'Pending'),
 (15, 1, 5, '0000-00-00', '523427.pdf', 'Pending'),
 (16, 1, 24, '0000-00-00', '813292.pdf', 'Pending'),
-(17, 1, 25, '0000-00-00', '521355.pdf', 'Pending'),
-(18, 1, 25, '0000-00-00', '366759.pdf', 'Pending'),
-(19, 1, 25, '0000-00-00', '230827.pdf', 'Pending'),
-(20, 1, 25, '0000-00-00', '559621.pdf', 'Pending');
+(40, 3, 25, '0000-00-00', '169368.pdf', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -171,7 +168,12 @@ CREATE TABLE `messages` (
 
 INSERT INTO `messages` (`id`, `title`, `applicantId`, `name`, `email`, `message`, `created_at`) VALUES
 (9, 'You loose', '1', 'theBitRiddler', 'thebitriddler@gmail.com', 'U got nothing ', '2024-08-15 15:24:14'),
-(10, 'Passed', '16', 'theBitRiddler', 'thebitriddler@gmail.com', 'You made it. Bachu Ally. a.k.a Abudujana Ally', '2024-08-15 15:46:51');
+(10, 'Passed', '16', 'theBitRiddler', 'thebitriddler@gmail.com', 'You made it. Bachu Ally. a.k.a Abudujana Ally', '2024-08-15 15:46:51'),
+(12, 'Reply', '40', '', '', 'U got busted', '2024-08-21 07:24:42'),
+(13, 'Post', '40', '', '', 'U didnt make it?', '2024-08-21 07:31:28'),
+(14, 'How', '40', '', '', 'about now', '2024-08-21 07:52:36'),
+(15, 'How', '40', '', '', 'about now', '2024-08-21 08:03:48'),
+(16, 'How', '40', '', '', 'about now', '2024-08-21 08:03:53');
 
 -- --------------------------------------------------------
 
@@ -298,7 +300,7 @@ ALTER TABLE `specialist`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `ApplicantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `ApplicantID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `company`
@@ -322,7 +324,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `opportunity`

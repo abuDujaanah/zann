@@ -5,8 +5,6 @@ $db = new DBhelper();
 
 $App = $db->getRows("applicants");
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -121,7 +119,6 @@ $App = $db->getRows("applicants");
 
                                 <div class="col-6">
                                 <a href="message-users.php?applicant=<?= $a['ApplicantID'] ?? ''; ?>" type="button" class="btn btn-danger w-100">accept</a>
-
 
                                 </div>
                             </div>

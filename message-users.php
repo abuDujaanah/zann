@@ -1,4 +1,8 @@
 <?php 
+session_start();
+include 'DB.php';
+$db = new DBhelper();
+
 $co_name = ""; // Initialize the variable to avoid the undefined variable warning
 $co_mail = ""; // Initialize $co_mail as well
 $applic = "";  // Initialize $applic to avoid undefined variable warning
@@ -6,21 +10,30 @@ $applic = "";  // Initialize $applic to avoid undefined variable warning
 if (isset($_GET['applicant'])) {
     $applic = $_GET['applicant'];
 
-    session_start();
-    if (isset($_SESSION['company_email'])) {
-        $co_mail = $_SESSION['company_email'];
-
-        include 'DB.php';
-        $db = new DBhelper();
+    if (isset($_SESSION['company_name'])) {
+        $co_name = $_SESSION['company_name'];
 
         // Fetch company name
-        $co_name = $db->getData("company", "Company_Name", "email", $co_mail);
-        if (!$co_name) {
-            $co_name = "Unknown Company"; // Fallback if the query returns no result
+        $co_mail = $db->getData("company", "email", "Company_Name", $co_name);
+
+        if (!$co_name) {      
+    
+            $co_mail = "Unknown Company"; // Fallback if the query returns no result
         }
     }
 
-    echo '<pre>'; print_r($co_name); echo '</pre>';
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    $applicant = $_POST['applicant'];
+    $name = $_POST['company_name'];
+    $title = $_POST['title'];
+    $email = $_POST['email'];
+    $message = $_POST['message'];
+
+    $sql = $db->insert('messages', ['title' => $title, 'applicantId' => $applicant, 'name' => $name, 'email' => $email, 'message' => $message]);
+
 }
 ?>
 
@@ -47,21 +60,4 @@ if (isset($_GET['applicant'])) {
     </form>
 </body>
 </html>
-<?php
 
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        include 'DB.php';
-        $db = new DBhelper();
-
-        $applicant = $_POST['applicant'];
-        $name = $_POST['company_name'];
-        $title = $_POST['title'];
-        $email = $_POST['email'];
-        $message = $_POST['message'];
-
-        $sql = $db->insert('messages', ['title' => $title, 'applicantId' => $applicant, 'name' => $name, 'email' => $email, 'message' => $message]);
-
-    }
-
-?>
