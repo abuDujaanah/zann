@@ -5,6 +5,8 @@ $db = new DBhelper();
 
 $App = $db->getRows("applicants");
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -108,6 +110,7 @@ $App = $db->getRows("applicants");
                             <p><b>Title:</b> <?= $db->getData("opportunity", "Tittle", "opportunityID", $a["opportunityID"]); ?></p>
                             <p><b>Status: </b><?= $a["Status"] ?></p>
                             <p><b>Applicant:</b> <?= $db->getData("specialist", "FullName", "SpecialistID", $a["SpecialistID"]); ?></p>
+                            
                             <div class="row mt-2">
                                 
                                 <div class="col-6">
