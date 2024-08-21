@@ -75,7 +75,7 @@ if ($co_name) {
                                 echo 'Zan-tech';
                             }
                             ?>
-                            Opportuninities</h1>
+                            Opportunities</h1>
                     </div>
                 </header>
                 <div class="content">
