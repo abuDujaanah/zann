@@ -1,27 +1,16 @@
 <?php
 // Database connection
-$servername = "localhost";
-$username = "root"; // Change to your MySQL username
-$password = ""; // Change to your MySQL password
-$dbname = "zantech"; // Your database name
+include 'db_connection.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-// Get the form data
-$user_mail = $_POST['usermail'];
-$rating = $_POST['rating'];
+// Get the the form user id
+$user_id = $_POST['id'];
 
 // Validate the data
-if (!empty($user_mail) && !empty($rating)) {
+if (!empty($user_id) && !empty($rating)) {
     // Update the specialist's rating
-    $sql = "UPDATE specialist SET rate = ? WHERE Email = ?";
+    $sql = "UPDATE specialist SET rate = ? WHERE SpecialistID = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("is", $rating, $user_mail);
+    $stmt->bind_param("is", $rating, $user_id);
 
     if ($stmt->execute()) {
         header("Location: company_dashboard.php?msg=rated");
@@ -31,7 +20,7 @@ if (!empty($user_mail) && !empty($rating)) {
 
     $stmt->close();
 } else {
-    echo "Please select a usermail and enter a rating.";
+    echo "Please select a user id and enter a rating.";
 }
 
 $conn->close();

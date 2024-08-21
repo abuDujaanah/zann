@@ -1,19 +1,8 @@
-<<?php
+<?php
 include 'DB.php';
 $db = new DBHelper();
 
-// Fetch the IDs from the query string or set a default value
-$specialistIDs = isset($_GET['id']) ? explode(',', $_GET['id']) : [1]; // Default to ID 1 if none is provided
-
-// Create a placeholder string for the IN clause
-$placeholders = implode(',', array_fill(0, count($specialistIDs), '?'));
-
-// Define your query to get specialists
-$query = "SELECT * FROM specialist WHERE SpecialistID IN ($placeholders)";
-$results = $db->getMultipleData($query, $specialistIDs);
-
-$rows = $results;
-
+$rows = $db->getRows('specialist' );
 ?>
 
 <!DOCTYPE html>
@@ -113,40 +102,46 @@ $rows = $results;
             /* Center the form container */
         }
     </style>
-</head>
-
-<body>
-    <div class="sidebar">
-        <a href="index.php">Home</a>
-        <a href="post-opportunity.php">Post Opportunity</a>
-        <a href="view-applications.php">View Applications</a>
-        <a href="rate-users.php">Rate Users</a>
-        <a href="message-users.php">Message Users</a>
-    </div>
-    <div class="content">
-        <div class="card">
-            <h2>Rate User</h2>
-            <?php if ($row) { ?>
-            <form action="submit_rating.php" method="post">
-                <div class="form-group">
-                    <label for="username">User Name: <?php echo $row['FullName']; ?></label>
-                    <input type="hidden" name="username" value="<?php echo $row['FullName']; ?>"></input>
-                    <label for="usermail">Email: <?php echo $row['Email']; ?></label>
-                    <input type="hidden" name="usermail" value="<?php echo $row['Email']; ?>"></input>
-                </div>
-                <div class="form-group">
-                    <label for="rating">Rating:</label>
-                    <input type="number" id="rating" name="rating" min="1" max="10">
-                </div>
-                <div class="form-group">
-                    <button type="submit">Submit Rating</button>
-                </div>
-            </form>
+    
+    </head>
+    
+    <body>
+        <div class="sidebar">
+            <a href="index.php">Home</a>
+            <a href="post-opportunity.php">Post Opportunity</a>
+            <a href="view-applications.php">View Applications</a>
+            <a href="rate-users.php">Rate Users</a>
+            <a href="message-users.php">Message Users</a>
+        </div>
+        <div class="content">
+            <?php if (!empty($rows)) { // Check if there are rows ?>
+                <?php foreach ($rows as $row) { // Iterate over each row ?>
+                    <div class="card">
+                        <h2>Rate User</h2>
+                        <form action="submit_rating.php" method="post">
+                            <div class="form-group">
+                                <input type="hidden" name="id" value="<?php echo $row['SpecialistID'] ?>">
+                                
+                                <label for="username">User Name: <?php echo htmlspecialchars($row['FullName']); ?></label>
+                                <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['FullName']); ?>"></input>
+                                <label for="usermail">Email: <?php echo htmlspecialchars($row['Email']); ?></label>
+                                <input type="hidden" name="usermail" value="<?php echo htmlspecialchars($row['Email']); ?>"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="rating">Rating:</label>
+                                <input type="number" id="rating" name="rating" min="1" max="10">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit">Submit Rating</button>
+                            </div>
+                        </form>
+                    </div>
+                <?php } ?>
             <?php } else { ?>
-                <p>User not found.</p>
+                <p>No users found.</p>
             <?php } ?>
         </div>
-    </div>
-</body>
-
-</html>
+    </body>
+    
+    </html>
+    
