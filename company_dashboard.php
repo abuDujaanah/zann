@@ -2,6 +2,7 @@
     session_start();
     include 'DB.php';
     $db = new DBHelper();
+    $co_name = "";
     
     if( isset( $_SESSION['company_email'] ) ) {
 
@@ -35,6 +36,9 @@
     $stmt->close();
     $conn->close();
 
+?>
+<?php 
+    if ( $co_name ) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -85,3 +89,9 @@
     </div>
 </body>
 </html>
+<?php
+    } elseif( !$co_name ) {
+        echo '<h1> You are not logged in </h1>';
+    }
+?>
+
