@@ -3,10 +3,13 @@
 include 'db_connection.php';
 
 // Get the the form user id
-$user_id = $_POST['id'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $user_id = $_POST['id'];
+    $rating = $_POST['rating'];
+}
 
 // Validate the data
-if (!empty($user_id) && !empty($rating)) {
+if (!empty($rating) && !empty($user_id) ) {
     // Update the specialist's rating
     $sql = "UPDATE specialist SET rate = ? WHERE SpecialistID = ?";
     $stmt = $conn->prepare($sql);
