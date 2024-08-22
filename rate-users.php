@@ -123,9 +123,10 @@ $rows = $db->getRows('specialist' );
                                 <input type="hidden" name="id" value="<?php echo $row['SpecialistID'] ?>">
                                 
                                 <label for="username">User Name: <?php echo htmlspecialchars($row['FullName']); ?></label>
-                                <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['FullName']); ?>"></input>
+                                <input type="hidden" name="username" value="<?php echo htmlspecialchars($row['FullName']); ?>">
+                                
                                 <label for="usermail">Email: <?php echo htmlspecialchars($row['Email']); ?></label>
-                                <input type="hidden" name="usermail" value="<?php echo htmlspecialchars($row['Email']); ?>"></input>
+                                <input type="hidden" name="usermail" value="<?php echo htmlspecialchars($row['Email']); ?>">
                             </div>
                             <div class="form-group">
                                 <label for="rating">Rating:</label>
